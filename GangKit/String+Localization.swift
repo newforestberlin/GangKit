@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension String {
+public extension String {
     
-    func localize(comment comment: String) ->String {
+    public func localize(comment comment: String) ->String {
         return NSLocalizedString(self, comment: comment)
     }
 }

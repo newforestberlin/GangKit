@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UIApplication {
+public extension UIApplication {
     
-    class func currentTarget() -> String {
+    public class func currentTarget() -> String {
         // we shuld be able to do this because we are dealing with optionals that should never be nil
         let infoDictionary = NSBundle.mainBundle().infoDictionary!
         let bundleName = (infoDictionary["CFBundleName"] as! String).stringByReplacingOccurrencesOfString(" ", withString: "_", options: .CaseInsensitiveSearch, range: nil)

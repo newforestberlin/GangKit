@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     
-    func alert(title title: String, message: String, completion: () -> ()) {
+    public func alert(title title: String, message: String, completion: () -> ()) {
         
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
@@ -22,7 +22,7 @@ extension UIViewController {
         self.presentViewController(alertVC, animated: true, completion: nil)
     }
 
-    func alert(title title: String, message: String) {
+    public func alert(title title: String, message: String) {
         
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
@@ -33,7 +33,7 @@ extension UIViewController {
         self.presentViewController(alertVC, animated: true, completion: nil)
     }
     
-    func alertQuestion(title title: String, question: String, completion: (yes: Bool) -> ()) {
+    public func alertQuestion(title title: String, question: String, completion: (yes: Bool) -> ()) {
         
         let alertVC = UIAlertController(title: title, message: question, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -49,7 +49,6 @@ extension UIViewController {
 
         self.presentViewController(alertVC, animated: true, completion: nil)
     }
-    
 }
 
 

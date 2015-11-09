@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UIImage {
+public extension UIImage {
     
-    func scale(maxWidth maxWidth: CGFloat) -> UIImage {
+    public func scale(maxWidth maxWidth: CGFloat) -> UIImage {
         
         let scalingFactor = maxWidth / self.size.width
         

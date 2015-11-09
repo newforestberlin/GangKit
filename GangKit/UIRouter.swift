@@ -9,7 +9,7 @@
 import UIKit
 
 // Type of storyboards we use. The raw values are used as actual storyboard file names during loading.
-enum StoryboardType: String {
+public enum StoryboardType: String {
     
     case Onboarding = "Onboarding"
     case Main = "Main"
@@ -17,7 +17,7 @@ enum StoryboardType: String {
 }
 
 // This map is used to determine which storyboard a certain view controller from.
-let UIRouterStoryboardMap = [String : StoryboardType]()// = [
+public let UIRouterStoryboardMap = [String : StoryboardType]()// = [
     
 //    UIRouter.className(WelcomeViewController): StoryboardType.Onboarding,
 //    UIRouter.className(OnboardingViewController): StoryboardType.Onboarding,
@@ -26,15 +26,15 @@ let UIRouterStoryboardMap = [String : StoryboardType]()// = [
 //    UIRouter.className(OfficeViewController): StoryboardType.Onboarding
 //]
 
-class UIRouter {
+public class UIRouter {
     
-    class func instantiateInitialViewControllerFromStoryboard(type: StoryboardType) -> UIViewController? {
+    public class func instantiateInitialViewControllerFromStoryboard(type: StoryboardType) -> UIViewController? {
         let storyboard = UIStoryboard(name: type.rawValue, bundle: nil)
         return storyboard.instantiateInitialViewController()
     }
     
     // Loads vc from storyboard
-    class func loadViewController(vcClass vcClass: AnyClass) -> UIViewController? {
+    public class func loadViewController(vcClass vcClass: AnyClass) -> UIViewController? {
         if let storyboardType = UIRouterStoryboardMap[UIRouter.className(vcClass)] {
             return loadViewControllerFromStoryboard(storyboardType, vcClass: vcClass)
         }
@@ -42,7 +42,7 @@ class UIRouter {
     }
     
     // Loads vc from storyboard
-    class func loadViewController(storyboardIdentifier storyboardIdentifier: String) -> UIViewController? {
+    public class func loadViewController(storyboardIdentifier storyboardIdentifier: String) -> UIViewController? {
         
         if let storyboardType = UIRouterStoryboardMap[storyboardIdentifier] {
             return loadViewControllerFromStoryboard(storyboardType, storyboardIdentifier: storyboardIdentifier)
@@ -51,7 +51,7 @@ class UIRouter {
     }
     
     // Strips all prefixes from class name
-    class func className(vcClass: AnyClass) -> String {
+    public class func className(vcClass: AnyClass) -> String {
         
         if let vcClassName = String.fromCString(class_getName(vcClass)) {
             return vcClassName.stringByReplacingOccurrencesOfString("\(UIApplication.currentTarget()).", withString: "")

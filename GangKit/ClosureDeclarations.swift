@@ -8,8 +8,8 @@
 
 import Foundation
 
-typealias CompletionClosure = ((completed: Bool) -> ())
-typealias ProgressClosure = ((progress: Int, total: Int) -> ())
-typealias VoidClosure = () -> ()
+public typealias CompletionClosure = ((completed: Bool) -> ())
+public typealias ProgressClosure = ((progress: Int, total: Int) -> ())
+public typealias VoidClosure = () -> ()
 
 

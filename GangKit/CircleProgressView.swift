@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ProgressView: UIView {
+public class ProgressView: UIView {
     
-    let circlePathLayer = CAShapeLayer()
+    private let circlePathLayer = CAShapeLayer()
     
-    var progress: CGFloat = 0.0 {
+    public var progress: CGFloat = 0.0 {
         
         didSet {
             
@@ -35,12 +35,12 @@ class ProgressView: UIView {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configure()
     }
     
-    func configure() {
+    private func configure() {
         
         opaque = true
         
@@ -58,15 +58,15 @@ class ProgressView: UIView {
         backgroundColor = UIColor.clearColor()
     }
     
-    func set(color color: UIColor) {
+    public func set(color color: UIColor) {
         circlePathLayer.strokeColor = color.CGColor
     }
     
-    func circlePath() -> UIBezierPath {
+    public func circlePath() -> UIBezierPath {
         return UIBezierPath(ovalInRect: bounds)
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         circlePathLayer.frame = bounds

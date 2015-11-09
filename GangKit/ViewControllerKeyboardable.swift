@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ViewControllerKeyboardable {
+public protocol ViewControllerKeyboardable {
     
     func setupKeyboardable()
     func removeKeyboardable()
@@ -19,25 +19,25 @@ protocol ViewControllerKeyboardable {
     func bottomConstraint() ->NSLayoutConstraint
 }
 
-extension ViewControllerKeyboardable where Self: UIViewController {
+public extension ViewControllerKeyboardable where Self: UIViewController {
     
     //    var bottomConstraint
     //
-    func setupKeyboardable() {
+    public func setupKeyboardable() {
         print("")
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    func removeKeyboardable() {
+    public func removeKeyboardable() {
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    func keyboardWillShow(n: NSNotification) {
+    public func keyboardWillShow(n: NSNotification) {
         
         if let keyboardSize = n.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size {
             
@@ -53,7 +53,7 @@ extension ViewControllerKeyboardable where Self: UIViewController {
         
     }
     
-    func keyboardWillHide(n: NSNotification) {
+    public func keyboardWillHide(n: NSNotification) {
         
         self.view.layoutIfNeeded()
         

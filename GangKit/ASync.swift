@@ -8,9 +8,9 @@
 
 import Foundation
 
-class ASync {
+public class ASync {
     
-    class func delay(delay:Double, closure:()->()) {
+    public class func delay(delay:Double, closure:()->()) {
         dispatch_after(
             dispatch_time(
                 DISPATCH_TIME_NOW,

@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UINib {
+public extension UINib {
     
-    class func instantiateView<T>(fromNib name: String) -> T? {
+    public class func instantiateView<T>(fromNib name: String) -> T? {
         
         if let view = UINib(nibName: name, bundle: nil).instantiateWithOwner(nil, options: nil).first as? T {
             return view
@@ -20,16 +20,16 @@ extension UINib {
     }
 }
 
-extension UIView {
+public extension UIView {
     
-    class func loadViewFromNib<T: UIView>(nibName: String) -> T? {
+    public class func loadViewFromNib<T: UIView>(nibName: String) -> T? {
         return UINib.instantiateView(fromNib: nibName) as T?
     }
     
     // Be aware that this removes the constraints from self and copies them to the loaded view!
     // This should be called from awakeAfterUsingCoder, like this:
     // return viewFromNib("TimerStatusView") ?? self
-    func viewFromNib<T: UIView>(nibName: String) -> T? {
+    public func viewFromNib<T: UIView>(nibName: String) -> T? {
         if subviews.count == 0 {
             if let view = UIView.loadViewFromNib(nibName) as? T {
                 view.translatesAutoresizingMaskIntoConstraints = false

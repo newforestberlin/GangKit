@@ -8,37 +8,37 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     
-    func addConstraintsWithFormat(visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
+    public func addConstraintsWithFormat(visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: options, metrics: metrics, views: views))
     }
     
-    func addConstraintsWithFormats(visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
+    public func addConstraintsWithFormats(visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
         for format in visualFormats {
             self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: options, metrics: metrics, views: views))
         }
     }
     
-    func addConstraintWithItem(withItem: UIView, withAttribute: NSLayoutAttribute, withRelation: NSLayoutRelation, toItem: UIView?, toAttribute: NSLayoutAttribute, multiplier: CGFloat, constant: CGFloat) {
+    public func addConstraintWithItem(withItem: UIView, withAttribute: NSLayoutAttribute, withRelation: NSLayoutRelation, toItem: UIView?, toAttribute: NSLayoutAttribute, multiplier: CGFloat, constant: CGFloat) {
         self.addConstraint(NSLayoutConstraint(item: withItem, attribute: withAttribute, relatedBy: withRelation, toItem: toItem, attribute: toAttribute, multiplier: multiplier, constant: constant))
     }
     
-    func addConstraintsWithFormats(visualFormats: [String], views: [String : UIView]) {
+    public func addConstraintsWithFormats(visualFormats: [String], views: [String : UIView]) {
         self.addConstraintsWithFormats(visualFormats, options: NSLayoutFormatOptions(), metrics: [String : AnyObject](), views: views)
     }
     
-    func addConstraintsWithFormat(visualFormat: String, views: [String : UIView]) {
+    public func addConstraintsWithFormat(visualFormat: String, views: [String : UIView]) {
         self.addConstraintsWithFormats([visualFormat], views: views)
     }
     
-    func removeAllConstraints() {
+    public func removeAllConstraints() {
         for c in self.constraints {
             self.removeConstraint(c)
         }
     }
     
-    func removeAllSubviews() {
+    public func removeAllSubviews() {
         for v in self.subviews {
             v.removeFromSuperview()
         }

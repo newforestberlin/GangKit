@@ -8,8 +8,9 @@
 
 import UIKit
 
-extension UIFont {
-    func sizeOfString (string: String, constrainedToWidth width: CGFloat) -> CGSize {
+public extension UIFont {
+
+    public func sizeOfString (string: String, constrainedToWidth width: CGFloat) -> CGSize {
         
         let options: NSStringDrawingOptions = [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading]
         let attributes = [NSFontAttributeName: self]
@@ -21,9 +22,9 @@ extension UIFont {
     }
 }
 
-extension String {
+public extension String {
     
-    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
+    public func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: CGFloat.max)
         
         let boundingBox = self.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)

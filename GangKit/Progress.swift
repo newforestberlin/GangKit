@@ -2,29 +2,29 @@
 
 import UIKit
 
-let Progress_magicTag: Int = 3141598
+private let Progress_magicTag: Int = 3141598
 
-class ProgressAnimationView: UIView {
+public class ProgressAnimationView: UIView {
     
-    let radius: CGFloat = 16.0
+    private let radius: CGFloat = 16.0
     
-    let animationStepCount = 100
-    let animationDuration = 0.8
+    private let animationStepCount = 100
+    private let animationDuration = 0.8
     
-    var circlePositions: [CGPoint] = []
-    var circleSizes: [CGFloat] = []
+    private var circlePositions: [CGPoint] = []
+    private var circleSizes: [CGFloat] = []
     
-    let circleMinSize: CGFloat = 7
+    private let circleMinSize: CGFloat = 7
     
-    let circleMinScale: CGFloat = 0.6
-    let circleMaxScale: CGFloat = 0.9
+    private let circleMinScale: CGFloat = 0.6
+    private let circleMaxScale: CGFloat = 0.9
     
     //var circle = UIView(frame: CGRectZero)
     
-    let circleCount = 5
-    var circles: [UIView] = []
+    private let circleCount = 5
+    private var circles: [UIView] = []
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = UIColor(white: 1.0, alpha: 0.4)
@@ -52,11 +52,11 @@ class ProgressAnimationView: UIView {
         }
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func startAnimation() {
+    public func startAnimation() {
         
         for k in 0..<circleCount {
             let circle = self.circles[k]
@@ -90,15 +90,15 @@ class ProgressAnimationView: UIView {
         }
     }
     
-    func stopAnimation() {
+    public func stopAnimation() {
         layer.removeAllAnimations()
     }
     
 }
 
-class Progress {
+public class Progress {
     
-    private class func getProgressFromView(view: UIView) -> UIView? {
+    public class func getProgressFromView(view: UIView) -> UIView? {
         for subview in view.subviews {
             if subview.tag == Progress_magicTag {
                 return subview
@@ -108,7 +108,7 @@ class Progress {
         return nil
     }
     
-    class func showProgressInView(view: UIView) {
+    public class func showProgressInView(view: UIView) {
         
         if let existingProgress = getProgressFromView(view) {
             
@@ -128,7 +128,7 @@ class Progress {
         animationView.startAnimation()
     }
     
-    class func hideProgressInView(view: UIView) {
+    public class func hideProgressInView(view: UIView) {
         if let existingProgress = getProgressFromView(view) as? ProgressAnimationView {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 existingProgress.alpha = 0.0

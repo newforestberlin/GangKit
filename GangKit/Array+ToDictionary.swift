@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension Array {
+public extension Array {
     
-    func toDictionary<K, V>(transformer: (element: Element) -> (key: K, value: V)?) -> Dictionary<K, V> {
+    public func toDictionary<K, V>(transformer: (element: Element) -> (key: K, value: V)?) -> Dictionary<K, V> {
         return self.reduce([:]) { (var dict, e) in
             if let (key, value) = transformer(element: e) {
                 dict[key] = value

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ModalDismissable {
+public protocol ModalDismissable {
     
     func dismiss(viewController viewController: UIViewController, animated: Bool)
     

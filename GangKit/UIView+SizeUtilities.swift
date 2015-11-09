@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     
-    func setSize(size: CGSize, center: CGPoint) {
+    public func setSize(size: CGSize, center: CGPoint) {
         self.frame = CGRectMake(center.x - size.width * 0.5, center.y - size.height * 0.5, size.width, size.height)
     }
     
-    func isInsideSuperview() -> Bool {
+    public func isInsideSuperview() -> Bool {
         if let sv = superview {
             if center.x > CGRectGetMaxX(sv.frame) || center.x < CGRectGetMinX(sv.frame) {
                 return false
@@ -27,7 +27,7 @@ extension UIView {
         return false
     }
     
-    func scale(scaleX scX: CGFloat, scaleY: CGFloat) {
+    public func scale(scaleX scX: CGFloat, scaleY: CGFloat) {
         let t: CGAffineTransform = self.transform
         let sX = sqrt(t.a * t.a + t.c * t.c)
         let sY = sqrt(t.b * t.b + t.d * t.d)
