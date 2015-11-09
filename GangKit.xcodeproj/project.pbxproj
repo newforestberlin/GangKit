@@ -32,7 +32,19 @@
 		9DFFB7521BF0FDBE00C94433 /* UIImage+Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7441BF0FDBE00C94433 /* UIImage+Effects.swift */; };
 		9DFFB7531BF0FDBE00C94433 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7451BF0FDBE00C94433 /* String+Localization.swift */; };
 		9DFFB7551BF0FDC700C94433 /* ModalDismissable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7541BF0FDC700C94433 /* ModalDismissable.swift */; };
+		9DFFB7891BF11A8B00C94433 /* GangKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7881BF11A8B00C94433 /* GangKitTests.swift */; };
+		9DFFB78B1BF11A8B00C94433 /* GangKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFFB7171BF0FD1B00C94433 /* GangKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9DFFB78C1BF11A8B00C94433 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9DFFB70E1BF0FD1B00C94433 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9DFFB7161BF0FD1B00C94433;
+			remoteInfo = GangKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9DFFB7171BF0FD1B00C94433 /* GangKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GangKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +74,9 @@
 		9DFFB7441BF0FDBE00C94433 /* UIImage+Effects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Effects.swift"; sourceTree = "<group>"; };
 		9DFFB7451BF0FDBE00C94433 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		9DFFB7541BF0FDC700C94433 /* ModalDismissable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDismissable.swift; sourceTree = "<group>"; };
+		9DFFB7861BF11A8B00C94433 /* GangKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GangKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DFFB7881BF11A8B00C94433 /* GangKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GangKitTests.swift; sourceTree = "<group>"; };
+		9DFFB78A1BF11A8B00C94433 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +87,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9DFFB7831BF11A8B00C94433 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DFFB78B1BF11A8B00C94433 /* GangKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -79,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				9DFFB7191BF0FD1B00C94433 /* GangKit */,
+				9DFFB7871BF11A8B00C94433 /* GangKitTests */,
 				9DFFB7181BF0FD1B00C94433 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				9DFFB7171BF0FD1B00C94433 /* GangKit.framework */,
+				9DFFB7861BF11A8B00C94433 /* GangKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +181,15 @@
 			name = "View Components";
 			sourceTree = "<group>";
 		};
+		9DFFB7871BF11A8B00C94433 /* GangKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				9DFFB7881BF11A8B00C94433 /* GangKitTests.swift */,
+				9DFFB78A1BF11A8B00C94433 /* Info.plist */,
+			);
+			path = GangKitTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -188,16 +222,38 @@
 			productReference = 9DFFB7171BF0FD1B00C94433 /* GangKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		9DFFB7851BF11A8B00C94433 /* GangKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DFFB7901BF11A8B00C94433 /* Build configuration list for PBXNativeTarget "GangKitTests" */;
+			buildPhases = (
+				9DFFB7821BF11A8B00C94433 /* Sources */,
+				9DFFB7831BF11A8B00C94433 /* Frameworks */,
+				9DFFB7841BF11A8B00C94433 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9DFFB78D1BF11A8B00C94433 /* PBXTargetDependency */,
+			);
+			name = GangKitTests;
+			productName = GangKitTests;
+			productReference = 9DFFB7861BF11A8B00C94433 /* GangKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9DFFB70E1BF0FD1B00C94433 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = youandthegang.com;
 				TargetAttributes = {
 					9DFFB7161BF0FD1B00C94433 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					9DFFB7851BF11A8B00C94433 = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
@@ -215,12 +271,20 @@
 			projectRoot = "";
 			targets = (
 				9DFFB7161BF0FD1B00C94433 /* GangKit */,
+				9DFFB7851BF11A8B00C94433 /* GangKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9DFFB7151BF0FD1B00C94433 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9DFFB7841BF11A8B00C94433 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,7 +325,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9DFFB7821BF11A8B00C94433 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DFFB7891BF11A8B00C94433 /* GangKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9DFFB78D1BF11A8B00C94433 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9DFFB7161BF0FD1B00C94433 /* GangKit */;
+			targetProxy = 9DFFB78C1BF11A8B00C94433 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9DFFB71D1BF0FD1B00C94433 /* Debug */ = {
@@ -388,6 +468,26 @@
 			};
 			name = Release;
 		};
+		9DFFB78E1BF11A8B00C94433 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GangKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = youandthegang.com.GangKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9DFFB78F1BF11A8B00C94433 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GangKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = youandthegang.com.GangKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -405,6 +505,15 @@
 			buildConfigurations = (
 				9DFFB7201BF0FD1B00C94433 /* Debug */,
 				9DFFB7211BF0FD1B00C94433 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9DFFB7901BF11A8B00C94433 /* Build configuration list for PBXNativeTarget "GangKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9DFFB78E1BF11A8B00C94433 /* Debug */,
+				9DFFB78F1BF11A8B00C94433 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
