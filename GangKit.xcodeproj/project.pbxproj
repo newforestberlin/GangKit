@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9DA4163E1C43E9F8009FA231 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */; };
 		9DFFB71B1BF0FD1B00C94433 /* GangKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DFFB71A1BF0FD1B00C94433 /* GangKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9DFFB7281BF0FDAB00C94433 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7261BF0FDAB00C94433 /* CircleProgressView.swift */; };
 		9DFFB7291BF0FDAB00C94433 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7271BF0FDAB00C94433 /* Progress.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utilities.swift"; sourceTree = "<group>"; };
 		9DFFB7171BF0FD1B00C94433 /* GangKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GangKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DFFB71A1BF0FD1B00C94433 /* GangKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GangKit.h; sourceTree = "<group>"; };
 		9DFFB71C1BF0FD1B00C94433 /* GangKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GangKit-Info.plist"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				9DFFB7431BF0FDBE00C94433 /* UIView+SizeUtilities.swift */,
 				9DFFB7441BF0FDBE00C94433 /* UIImage+Effects.swift */,
 				9DFFB7451BF0FDBE00C94433 /* String+Localization.swift */,
+				9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DA4163E1C43E9F8009FA231 /* String+Utilities.swift in Sources */,
 				9DFFB74B1BF0FDBE00C94433 /* UIViewController+Alert.swift in Sources */,
 				9DFFB7321BF0FDB400C94433 /* ASync.swift in Sources */,
 				9DFFB7481BF0FDBE00C94433 /* UIApplication+CurrentTarget.swift in Sources */,
