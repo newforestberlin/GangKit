@@ -197,7 +197,7 @@ public extension String {
         let results = hashtagDetector?.matchesInString(self, options: NSMatchingOptions.WithoutAnchoringBounds, range: NSMakeRange(0, self.utf16.count)).map { $0 }
         
         return results?.map({
-            (self as NSString).substringWithRange($0.rangeAtIndex(1))
+            (self as NSString).substringWithRange($0.rangeAtIndex(0))
         })
     }
     
