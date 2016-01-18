@@ -34,6 +34,14 @@ public extension UIView {
         }
     }
     
+    public func animateBackgroundColor(color: UIColor, duration: NSTimeInterval, completion: ((done: Bool)->())?) {
+        UIView.animateWithDuration(duration, delay: 0.0, options: .CurveEaseIn, animations: { () -> Void in
+            self.backgroundColor = color
+            }) { (complete) -> Void in
+                completion?(done: complete)
+        }
+    }
+    
     public class func springAnimationWithDuration(duration: NSTimeInterval, animations: (() -> Void), completion: ((Bool) -> Void)? ) {
         UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.CurveEaseInOut, animations: animations, completion: completion)        
     }
