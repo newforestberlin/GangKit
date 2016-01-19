@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9DA4163E1C43E9F8009FA231 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */; };
+		9DFBF8471C4E712A004F2D87 /* GangTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFBF8461C4E712A004F2D87 /* GangTableView.swift */; };
 		9DFFB71B1BF0FD1B00C94433 /* GangKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DFFB71A1BF0FD1B00C94433 /* GangKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9DFFB7281BF0FDAB00C94433 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7261BF0FDAB00C94433 /* CircleProgressView.swift */; };
 		9DFFB7291BF0FDAB00C94433 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFFB7271BF0FDAB00C94433 /* Progress.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utilities.swift"; sourceTree = "<group>"; };
+		9DFBF8461C4E712A004F2D87 /* GangTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GangTableView.swift; sourceTree = "<group>"; };
 		9DFFB7171BF0FD1B00C94433 /* GangKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GangKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DFFB71A1BF0FD1B00C94433 /* GangKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GangKit.h; sourceTree = "<group>"; };
 		9DFFB71C1BF0FD1B00C94433 /* GangKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GangKit-Info.plist"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				9DFFB7261BF0FDAB00C94433 /* CircleProgressView.swift */,
 				9DFFB7271BF0FDAB00C94433 /* Progress.swift */,
+				9DFBF8461C4E712A004F2D87 /* GangTableView.swift */,
 			);
 			name = "View Components";
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				9DFFB7531BF0FDBE00C94433 /* String+Localization.swift in Sources */,
 				9DFFB7511BF0FDBE00C94433 /* UIView+SizeUtilities.swift in Sources */,
 				9DFFB7551BF0FDC700C94433 /* ModalDismissable.swift in Sources */,
+				9DFBF8471C4E712A004F2D87 /* GangTableView.swift in Sources */,
 				9DFFB7341BF0FDB400C94433 /* Reachability.swift in Sources */,
 				9DFFB74E1BF0FDBE00C94433 /* UIImage+Color.swift in Sources */,
 				9DFFB7371BF0FDB400C94433 /* ViewControllerKeyboardable.swift in Sources */,
