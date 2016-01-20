@@ -130,7 +130,7 @@ public class Progress {
         return nil
     }
     
-    public class func showProgressInView(view: UIView) {
+    public class func showProgressInView(view: UIView, withBackgroundColor bgColor: UIColor = UIColor(white: 1.0, alpha: 0.4)) {
         
         if let existingProgress = getProgressFromView(view) {
             
@@ -143,13 +143,15 @@ public class Progress {
         
         let animationView = ProgressAnimationView(frame: view.bounds)
         
+        animationView.backgroundColor = bgColor
+
         view.addSubview(animationView)
         animationView.frame = view.bounds
         animationView.tag = Progress_magicTag
         
         animationView.startAnimation()
     }
-    
+
     public class func hideProgressInView(view: UIView) {
         if let existingProgress = getProgressFromView(view) as? ProgressAnimationView {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
