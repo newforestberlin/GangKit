@@ -53,15 +53,15 @@ public extension UIViewController {
         
         let alertVC = UIAlertController(title: title, message: question, preferredStyle: UIAlertControllerStyle.Alert)
         
-        let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) -> Void in
-            completion(yes: true)
-        }
-        alertVC.addAction(yesAction)
-        
         let noAction = UIAlertAction(title: "No", style: .Default) { (action) -> Void in
             completion(yes: false)
         }
         alertVC.addAction(noAction)
+
+        let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) -> Void in
+            completion(yes: true)
+        }
+        alertVC.addAction(yesAction)
 
         self.presentViewController(alertVC, animated: true, completion: nil)
     }
