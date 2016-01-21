@@ -47,23 +47,23 @@ extension ViewController: CustomTableViewDelegate {
 
 import UIKit
 
-protocol UpdatableCell {
+public protocol UpdatableCell {
 
     func update(data data: AnyObject)
 }
 
-protocol TableViewDelegate: class {
+public protocol TableViewDelegate: class {
     
     func didSelect(tableView tableview: UITableView, indexPath: NSIndexPath, data: AnyObject)
     
 }
 
-protocol TableViewDataSource: class {
+public protocol TableViewDataSource: class {
     
     func cellIdentifier(forData data: AnyObject) -> String?
 }
 
-class GangTableView: UITableView {
+public class GangTableView: UITableView {
 
     var sections = [[AnyObject]]()
     private var registeredIdentifiers = Set<String>()
@@ -71,7 +71,7 @@ class GangTableView: UITableView {
     weak var tableViewDelegate: TableViewDelegate?
     weak var tableViewDataSource: TableViewDataSource?
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         delegate = self
