@@ -68,8 +68,8 @@ public class GangTableView: UITableView {
     var sections = [[AnyObject]]()
     private var registeredIdentifiers = Set<String>()
     
-    weak var tableViewDelegate: TableViewDelegate?
-    weak var tableViewDataSource: TableViewDataSource?
+    public weak var tableViewDelegate: TableViewDelegate?
+    public weak var tableViewDataSource: TableViewDataSource?
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
