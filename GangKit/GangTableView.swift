@@ -81,7 +81,7 @@ public class GangTableView: UITableView {
 
 extension GangTableView: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let data = sections[indexPath.section][indexPath.row]
         tableViewDelegate?.didSelect(tableView: self, indexPath: indexPath, data: data)
@@ -90,17 +90,17 @@ extension GangTableView: UITableViewDelegate {
 
 extension GangTableView: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return sections.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return sections[section].count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let data = sections[indexPath.section][indexPath.row]
         
