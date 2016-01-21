@@ -65,11 +65,11 @@ public protocol TableViewDataSource: class {
 
 public class GangTableView: UITableView {
 
-    var sections = [[AnyObject]]()
-    private var registeredIdentifiers = Set<String>()
-    
+    public var sections = [[AnyObject]]()
     public weak var tableViewDelegate: TableViewDelegate?
     public weak var tableViewDataSource: TableViewDataSource?
+
+    private var registeredIdentifiers = Set<String>()
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
