@@ -35,4 +35,9 @@ public extension UIColor {
         return UIColor(red: CGFloat(r / 255.0), green: CGFloat(g / 255.0), blue:CGFloat(b / 255.0), alpha: CGFloat(alpha))
     }
     
+    
+    
+    public func tinted(color color: UIColor, factor: CGFloat) -> UIColor {
+    }
+    
 }
