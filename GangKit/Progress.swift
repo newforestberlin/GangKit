@@ -26,7 +26,21 @@ import UIKit
 
 private let Progress_magicTag: Int = 3141598
 
-public class ProgressAnimationView: UIView {
+public class AnimatedProgressView: UIView {
+    
+    public func startAnimation() {
+    }
+    
+    public func stopAnimation() {
+    }
+    
+}
+
+public protocol AnimatedProgressViewFactory {
+    func createAnimatedProgressView(withFrame frame: CGRect) -> AnimatedProgressView?
+}
+
+public class ProgressAnimationView: AnimatedProgressView {
     
     private let radius: CGFloat = 16.0
     
@@ -78,7 +92,7 @@ public class ProgressAnimationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func startAnimation() {
+    public override func startAnimation() {
         
         for k in 0..<circleCount {
             let circle = self.circles[k]
@@ -112,7 +126,7 @@ public class ProgressAnimationView: UIView {
         }
     }
     
-    public func stopAnimation() {
+    public override func stopAnimation() {
         layer.removeAllAnimations()
     }
     
@@ -130,7 +144,7 @@ public class Progress {
         return nil
     }
     
-    public class func showProgressInView(view: UIView, withBackgroundColor bgColor: UIColor = UIColor(white: 1.0, alpha: 0.4)) {
+    public class func showProgressInView(view: UIView, withBackgroundColor bgColor: UIColor = UIColor(white: 1.0, alpha: 0.4), withFactory factory: AnimatedProgressViewFactory? = nil) {
         
         if let existingProgress = getProgressFromView(view) {
             
@@ -141,19 +155,29 @@ public class Progress {
             return
         }
         
-        let animationView = ProgressAnimationView(frame: view.bounds)
+        var animationView: AnimatedProgressView? = nil
         
-        animationView.backgroundColor = bgColor
-
-        view.addSubview(animationView)
-        animationView.frame = view.bounds
-        animationView.tag = Progress_magicTag
+        if let factory = factory {
+            animationView = factory.createAnimatedProgressView(withFrame: view.bounds)
+        }
         
-        animationView.startAnimation()
+        if animationView == nil {
+            animationView = ProgressAnimationView(frame: view.bounds)
+        }
+        
+        if let animationView = animationView {
+            animationView.backgroundColor = bgColor
+            
+            view.addSubview(animationView)
+            animationView.frame = view.bounds
+            animationView.tag = Progress_magicTag
+            
+            animationView.startAnimation()
+        }
     }
 
     public class func hideProgressInView(view: UIView) {
-        if let existingProgress = getProgressFromView(view) as? ProgressAnimationView {
+        if let existingProgress = getProgressFromView(view) as? AnimatedProgressView {
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 existingProgress.alpha = 0.0
                 }, completion: { (done) -> Void in
