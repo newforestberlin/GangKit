@@ -12,7 +12,7 @@ import Foundation
 
 extension NSDate {
     
-    func timeAgo(numericDates numericDates: Bool) -> String {
+    public func timeAgo(numericDates numericDates: Bool) -> String {
         
         let date = self
         
