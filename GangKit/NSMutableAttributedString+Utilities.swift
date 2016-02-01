@@ -50,4 +50,15 @@ public extension NSMutableAttributedString {
         let range = (self.string as NSString).rangeOfString(self.string)
         self.addAttribute(NSParagraphStyleAttributeName, value: paraStyle, range: range)
     }
+    
+//    public func underline() {
+//        
+//    }
+    
+    public func underline(subString string: String) {
+        
+        let range = (self.string as NSString).rangeOfString(string)
+        self.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: range)
+    }
+    
 }
