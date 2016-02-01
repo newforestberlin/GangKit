@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D34C2D21C5F86B60027A4E0 /* NSDate+StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D34C2D11C5F86B60027A4E0 /* NSDate+StringUtilities.swift */; };
 		9DA4163E1C43E9F8009FA231 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */; };
 		9DFBF8471C4E712A004F2D87 /* GangTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFBF8461C4E712A004F2D87 /* GangTableView.swift */; };
 		9DFFB71B1BF0FD1B00C94433 /* GangKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DFFB71A1BF0FD1B00C94433 /* GangKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D34C2D11C5F86B60027A4E0 /* NSDate+StringUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+StringUtilities.swift"; sourceTree = "<group>"; };
 		9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utilities.swift"; sourceTree = "<group>"; };
 		9DFBF8461C4E712A004F2D87 /* GangTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GangTableView.swift; sourceTree = "<group>"; };
 		9DFFB7171BF0FD1B00C94433 /* GangKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GangKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +175,7 @@
 				9DFFB7441BF0FDBE00C94433 /* UIImage+Effects.swift */,
 				9DFFB7451BF0FDBE00C94433 /* String+Localization.swift */,
 				9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */,
+				9D34C2D11C5F86B60027A4E0 /* NSDate+StringUtilities.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				9DFFB7351BF0FDB400C94433 /* ClosureDeclarations.swift in Sources */,
 				9DFFB74A1BF0FDBE00C94433 /* UIColor+Utilities.swift in Sources */,
 				9DFFB74D1BF0FDBE00C94433 /* UIView+Animations.swift in Sources */,
+				9D34C2D21C5F86B60027A4E0 /* NSDate+StringUtilities.swift in Sources */,
 				9DFFB7491BF0FDBE00C94433 /* UIImage+Scaling.swift in Sources */,
 				9DFFB7361BF0FDB400C94433 /* RandomNumbers.swift in Sources */,
 				9DFFB7521BF0FDBE00C94433 /* UIImage+Effects.swift in Sources */,
