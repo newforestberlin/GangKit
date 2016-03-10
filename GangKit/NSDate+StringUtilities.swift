@@ -12,6 +12,15 @@ import Foundation
 
 extension NSDate {
     
+    public func fallsBetween(earlierDate earlierDate: NSDate, laterDate: NSDate) -> Bool {
+        
+        if self.compare(earlierDate) == .OrderedAscending { return false }
+        if self.compare(laterDate) == .OrderedDescending { return false }
+        
+        return true
+        
+    }
+    
     public func timeAgo(numericDates numericDates: Bool) -> String {
         
         let date = self
