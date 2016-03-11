@@ -23,6 +23,10 @@ public extension NSDateFormatter {
         return formatter
     }
     
+    public class func string(format: DateFormat) -> String {
+        return format.string
+    }
+    
     public enum DateFormat {
         
         case EEEE(date: NSDate)
