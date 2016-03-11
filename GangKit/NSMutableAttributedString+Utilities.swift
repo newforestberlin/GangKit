@@ -24,6 +24,12 @@
 
 import UIKit
 
+infix operator += {associativity left precedence 140}
+func += (left: NSMutableAttributedString, right: String) {
+    
+    left.appendAttributedString(NSAttributedString(string: right))
+}
+
 public extension NSMutableAttributedString {
     
     public func setFont(font: UIFont) {
