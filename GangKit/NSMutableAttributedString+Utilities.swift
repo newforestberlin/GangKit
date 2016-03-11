@@ -25,7 +25,7 @@
 import UIKit
 
 //infix operator += {associativity left precedence 140}
-public func += (left: NSMutableAttributedString, right: String) {
+public func += (inout left: NSMutableAttributedString, right: String) {
     
     left.appendAttributedString(NSAttributedString(string: right))
 }
