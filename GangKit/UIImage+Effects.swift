@@ -294,8 +294,8 @@ public extension UIImage {
 
 public extension UIView {
     
-    public func snapshot() -> UIImage {
-        
+    public func snapshot() -> UIImage? {
+
         UIGraphicsBeginImageContextWithOptions(self.frame.size, false, UIScreen.mainScreen().scale)
         drawViewHierarchyInRect(self.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -306,9 +306,10 @@ public extension UIView {
     
     public func blurredImage(tintColor: UIColor = UIColor(white: 0, alpha: 0.4)) -> UIImage {
         
-        let image = self.snapshot()
-        if let blurredImage = image.applyBlurWithRadius(4.0, tintColor: tintColor, saturationDeltaFactor: 1.0) {
-            return blurredImage
+        if let image = self.snapshot() {
+            if let blurredImage = image.applyBlurWithRadius(4.0, tintColor: tintColor, saturationDeltaFactor: 1.0) {
+                return blurredImage
+            }
         }
 
         return UIImage()
@@ -316,10 +317,12 @@ public extension UIView {
     
     public func darkBlurredImage() -> UIImage {
         
-        let image = self.snapshot()
-        if let blurredImage = image.applyBlurWithRadius(4.0, tintColor: UIColor(white: 0.0, alpha: 0.5), saturationDeltaFactor: 0.1) {
-            return blurredImage
+        if let image = self.snapshot() {
+            if let blurredImage = image.applyBlurWithRadius(4.0, tintColor: UIColor(white: 0.0, alpha: 0.5), saturationDeltaFactor: 0.1) {
+                return blurredImage
+            }
         }
+
         return UIImage()
 
     }
