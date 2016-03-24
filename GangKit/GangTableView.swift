@@ -47,15 +47,15 @@ extension ViewController: CustomTableViewDelegate {
 
 import UIKit
 
-public protocol UpdatableCell {
+public protocol Updatable {
 
     func update(data data: AnyObject)
 }
 
 public protocol TableViewDelegate: class {
     
+    func configure(cell cell: UITableViewCell, tableview: UITableView, indexPath: NSIndexPath, data: AnyObject)
     func didSelect(tableView tableview: UITableView, indexPath: NSIndexPath, data: AnyObject)
-    
 }
 
 public protocol TableViewDataSource: class {
@@ -63,11 +63,20 @@ public protocol TableViewDataSource: class {
     func cellIdentifier(forData data: AnyObject) -> String?
 }
 
+public protocol TableViewSectionHeaderDelegate: class {
+
+    func sectionView(forSection: section) -> UIView?
+    func height(forSection: section) -> CGFloat
+
+}
+
 public class GangTableView: UITableView {
 
     public var sections = [[AnyObject]]()
     public weak var tableViewDelegate: TableViewDelegate?
     public weak var tableViewDataSource: TableViewDataSource?
+    public weak var tableViewScrollDelegate: TableViewScrollDelegate?
+    public weak var tableViewSectionHeaderDelegate: TableViewSectionHeaderDelegate?
 
     private var registeredIdentifiers = Set<String>()
     
@@ -77,6 +86,10 @@ public class GangTableView: UITableView {
         delegate = self
         dataSource = self
     }
+
+    func data(atIndexPath indexPath: NSIndexPath) -> AnyObject {
+        return sections[indexPath.section][indexPath.row]
+    }
 }
 
 extension GangTableView: UITableViewDelegate {
@@ -85,6 +98,14 @@ extension GangTableView: UITableViewDelegate {
         
         let data = sections[indexPath.section][indexPath.row]
         tableViewDelegate?.didSelect(tableView: self, indexPath: indexPath, data: data)
+    }
+
+    public func scrollViewDidScroll(scrollView: UIScrollView) {
+        tableViewScrollDelegate?.didScroll(self)
+    }
+
+    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        tableViewScrollDelegate?.didEndScrolling(self)
     }
 }
 
@@ -122,13 +143,23 @@ extension GangTableView: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
             
-            if let cell = cell as? UpdatableCell {
+            if let cell = cell as? Updatable {
                 cell.update(data: data)
             }
-            
+
+            tableViewDelegate?.configure(cell: cell, tableview: tableView, indexPath: indexPath, data: data)
+
             return cell
         }
         
         return UITableViewCell()
+    }
+
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableViewSectionHeaderDelegate?.sectionView(section)
+    }
+
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return tableViewSectionHeaderDelegate?.height(forSection: section) ?? UITableViewAutomaticDimension
     }
 }
