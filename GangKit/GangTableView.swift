@@ -65,9 +65,16 @@ public protocol TableViewDataSource: class {
 
 public protocol TableViewSectionHeaderDelegate: class {
 
-    func sectionView(forSection: section) -> UIView?
-    func height(forSection: section) -> CGFloat
+    func sectionView(forSection section: Int) -> UIView?
+    func height(forSection section: Int) -> CGFloat
 
+}
+
+public protocol TableViewScrollDelegate: class {
+
+    func didScroll(scrollView: UIScrollView)
+    func didEndScrolling(scrollView: UIScrollView)
+    
 }
 
 public class GangTableView: UITableView {
@@ -156,7 +163,7 @@ extension GangTableView: UITableViewDataSource {
     }
 
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return tableViewSectionHeaderDelegate?.sectionView(section)
+        return tableViewSectionHeaderDelegate?.sectionView(forSection: section)
     }
 
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
