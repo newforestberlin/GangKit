@@ -15,6 +15,7 @@ public extension NSDateFormatter {
     @nonobjc static let HHmmFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "HH:mm")
     @nonobjc static let MMMddFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "MMM dd")
     @nonobjc static let EEEEMMMddAtHHmmFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "EEEE MMM dd 'at' HH:mm")
+    @nonobjc static let EEEMMMddFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "EEE, MMM dd")
     
     public class func create(locale: NSLocale, format: String) -> NSDateFormatter {
         
@@ -35,6 +36,7 @@ public extension NSDateFormatter {
         case HHmm(date: NSDate)
         case MMMdd(date: NSDate)
         case EEEEMMMddAtHHmm(date: NSDate)
+        case EEEMMMdd(date: NSDate)
         
         public var string: String {
             switch self {
@@ -48,6 +50,8 @@ public extension NSDateFormatter {
                 return MMMddFormatter.stringFromDate(date)
             case .EEEEMMMddAtHHmm(let date):
                 return EEEEMMMddAtHHmmFormatter.stringFromDate(date)
+            case .EEEMMMdd(let date):
+                return EEEMMMddFormatter.stringFromDate(date)
             }
         }
     }
