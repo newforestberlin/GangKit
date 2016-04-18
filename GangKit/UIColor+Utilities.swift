@@ -35,8 +35,9 @@ public extension UIColor {
         return UIColor(red: CGFloat(r / 255.0), green: CGFloat(g / 255.0), blue:CGFloat(b / 255.0), alpha: CGFloat(alpha))
     }
     
-    public func tinted(withColor color: UIColor, var factor: CGFloat) -> UIColor {
+    public func tinted(withColor color: UIColor, factor: CGFloat) -> UIColor {
 
+        var f: CGFloat = 0.0
         // Get RGBA components of self
         var r: CGFloat = 0.0
         var g: CGFloat = 0.0
@@ -52,17 +53,17 @@ public extension UIColor {
         color.getRed(&tr, green: &tg, blue: &tb, alpha: &ta)
 
         // Make sure factor is in [0,1] bounds
-        factor = fmin(factor, 1.0)
-        factor = fmax(factor, 0.0)
+        f = fmin(factor, 1.0)
+        f = fmax(factor, 0.0)
         
         // Own factor is inverse of tint color factor
-        let ownFactor = 1.0 - factor
+        let ownFactor = 1.0 - f
         
         // Do linear combination of self and tint color
-        r = ownFactor * r + factor * tr
-        g = ownFactor * g + factor * tg
-        b = ownFactor * b + factor * tb
-        a = ownFactor * a + factor * ta
+        r = ownFactor * r + f * tr
+        g = ownFactor * g + f * tg
+        b = ownFactor * b + f * tb
+        a = ownFactor * a + f * ta
 
         // Create new color with those components
         return UIColor(red: r, green: g, blue: b, alpha: a)
