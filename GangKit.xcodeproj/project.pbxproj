@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D94EFF91CE5F16A00B0E1B9 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D94EFF81CE5F16A00B0E1B9 /* Country.swift */; };
 		7DC15DA91CC537BD005A866B /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC15DA81CC537BD005A866B /* Keyboardable.swift */; };
 		7DC15DAA1CC537BD005A866B /* Keyboardable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC15DA81CC537BD005A866B /* Keyboardable.swift */; };
 		9D287C351C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D287C341C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D94EFF81CE5F16A00B0E1B9 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		7DC15DA81CC537BD005A866B /* Keyboardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		9D287C341C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+DefaultFormatters.swift"; sourceTree = "<group>"; };
 		9D34C2D11C5F86B60027A4E0 /* NSDate+StringUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+StringUtilities.swift"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				9DFFB72E1BF0FDB400C94433 /* ClosureDeclarations.swift */,
 				9DFFB72F1BF0FDB400C94433 /* RandomNumbers.swift */,
 				7DC15DA81CC537BD005A866B /* Keyboardable.swift */,
+				7D94EFF81CE5F16A00B0E1B9 /* Country.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				9DFFB7511BF0FDBE00C94433 /* UIView+SizeUtilities.swift in Sources */,
 				9D287C351C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift in Sources */,
 				9DFFB7551BF0FDC700C94433 /* ModalDismissable.swift in Sources */,
+				7D94EFF91CE5F16A00B0E1B9 /* Country.swift in Sources */,
 				9DFBF8471C4E712A004F2D87 /* GangTableView.swift in Sources */,
 				9DFFB7341BF0FDB400C94433 /* Reachability.swift in Sources */,
 				9DFFB74E1BF0FDBE00C94433 /* UIImage+Color.swift in Sources */,
