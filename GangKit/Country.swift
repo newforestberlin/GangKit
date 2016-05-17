@@ -25,6 +25,10 @@ public struct Country {
         
         return result
     }
+    
+    public static func country(withISOCode isoCode: String) -> Country? {
+        return Country.allCountries().filter { $0.isoCode.lowercaseString == isoCode.lowercaseString }.first
+    }
 
 }
 
