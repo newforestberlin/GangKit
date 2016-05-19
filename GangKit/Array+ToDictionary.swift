@@ -27,12 +27,12 @@ import Foundation
 public extension Array {
     
     public func toDictionary<K, V>(transformer: (element: Element) -> (key: K, value: V)?) -> Dictionary<K, V> {
-        return self.reduce([:]) { (var dict, e) in
+        return self.reduce([:]) { (dict, e) in
+            var tempDict = dict
             if let (key, value) = transformer(element: e) {
-                dict[key] = value
+                tempDict[key] = value
             }
-            return dict
+            return tempDict
         }
-    }    
-
+    }
 }

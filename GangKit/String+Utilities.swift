@@ -170,7 +170,7 @@ public extension String {
      - returns: [NSDate]
      */
     public func getDates() -> [NSDate] {
-        let error: NSErrorPointer = NSErrorPointer()
+        let error: NSErrorPointer = nil
         let detector: NSDataDetector?
         do {
             detector = try NSDataDetector(types: NSTextCheckingType.Date.rawValue)
@@ -282,15 +282,15 @@ public extension String {
         let start = startIndex.advancedBy(r.startIndex)
         let end = startIndex.advancedBy(r.endIndex)
         
-        return substringWithRange(Range(start: start, end: end))
+        return substringWithRange(start..<end)
     }
     
     public subscript (range: NSRange) -> String {
         let end = range.location + range.length
-        return self[Range(start: range.location, end: end)]
+        return self[range.location..<end]
     }
     
     public subscript (substring: String) -> Range<String.Index>? {
-        return rangeOfString(substring, options: NSStringCompareOptions.LiteralSearch, range: Range(start: startIndex, end: endIndex), locale: NSLocale.currentLocale())
+        return rangeOfString(substring, options: NSStringCompareOptions.LiteralSearch, range: startIndex..<endIndex, locale: NSLocale.currentLocale())
     }
 }
