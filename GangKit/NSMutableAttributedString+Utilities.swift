@@ -56,10 +56,14 @@ public extension NSMutableAttributedString {
         let range = (self.string as NSString).rangeOfString(self.string)
         self.addAttribute(NSParagraphStyleAttributeName, value: paraStyle, range: range)
     }
-    
-//    public func underline() {
-//        
-//    }
+
+    public func setLinespacing(spacing: CGFloat = 0) {
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = spacing
+
+        self.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, self.length))
+    }
     
     public func underline(subString string: String) {
         
