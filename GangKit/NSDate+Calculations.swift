@@ -16,4 +16,4 @@ public func ==(a: NSDate, b: NSDate) -> Bool {
 	return a.compare(b) == NSComparisonResult.OrderedSame
 }
 
-public extension NSDate: Comparable { }
+extension NSDate: Comparable { }
