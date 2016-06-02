@@ -13,6 +13,8 @@
 		9D287C351C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D287C341C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift */; };
 		9D287C361C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D287C341C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift */; };
 		9D34C2D21C5F86B60027A4E0 /* NSDate+StringUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D34C2D11C5F86B60027A4E0 /* NSDate+StringUtilities.swift */; };
+		9D75F9271D002477005FB250 /* NSDate+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D75F9261D002477005FB250 /* NSDate+Calculations.swift */; };
+		9D75F9281D002477005FB250 /* NSDate+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D75F9261D002477005FB250 /* NSDate+Calculations.swift */; };
 		9DA4163E1C43E9F8009FA231 /* String+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */; };
 		9DFBF8471C4E712A004F2D87 /* GangTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFBF8461C4E712A004F2D87 /* GangTableView.swift */; };
 		9DFFB71B1BF0FD1B00C94433 /* GangKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DFFB71A1BF0FD1B00C94433 /* GangKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,6 +60,7 @@
 		7DC15DA81CC537BD005A866B /* Keyboardable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboardable.swift; sourceTree = "<group>"; };
 		9D287C341C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+DefaultFormatters.swift"; sourceTree = "<group>"; };
 		9D34C2D11C5F86B60027A4E0 /* NSDate+StringUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+StringUtilities.swift"; sourceTree = "<group>"; };
+		9D75F9261D002477005FB250 /* NSDate+Calculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Calculations.swift"; sourceTree = "<group>"; };
 		9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utilities.swift"; sourceTree = "<group>"; };
 		9DFBF8461C4E712A004F2D87 /* GangTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GangTableView.swift; sourceTree = "<group>"; };
 		9DFFB7171BF0FD1B00C94433 /* GangKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GangKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +187,7 @@
 				9DA4163D1C43E9F8009FA231 /* String+Utilities.swift */,
 				9D34C2D11C5F86B60027A4E0 /* NSDate+StringUtilities.swift */,
 				9D287C341C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift */,
+				9D75F9261D002477005FB250 /* NSDate+Calculations.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -269,6 +273,7 @@
 				TargetAttributes = {
 					9DFFB7161BF0FD1B00C94433 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = STFPXM8S6R;
 					};
 					9DFFB7851BF11A8B00C94433 = {
 						CreatedOnToolsVersion = 7.1;
@@ -317,6 +322,7 @@
 			files = (
 				9DA4163E1C43E9F8009FA231 /* String+Utilities.swift in Sources */,
 				9DFFB74B1BF0FDBE00C94433 /* UIViewController+Alert.swift in Sources */,
+				9D75F9271D002477005FB250 /* NSDate+Calculations.swift in Sources */,
 				9DFFB7321BF0FDB400C94433 /* ASync.swift in Sources */,
 				9DFFB7481BF0FDBE00C94433 /* UIApplication+CurrentTarget.swift in Sources */,
 				9DFFB74C1BF0FDBE00C94433 /* UIView+AutoLayoutUtils.swift in Sources */,
@@ -351,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D75F9281D002477005FB250 /* NSDate+Calculations.swift in Sources */,
 				9D287C361C92DAEB003D2B30 /* NSDateFormatter+DefaultFormatters.swift in Sources */,
 				9DFFB7891BF11A8B00C94433 /* GangKitTests.swift in Sources */,
 				7DC15DAA1CC537BD005A866B /* Keyboardable.swift in Sources */,
@@ -462,6 +469,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -482,6 +490,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
