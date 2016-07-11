@@ -65,6 +65,24 @@ public extension UIViewController {
 
         self.presentViewController(alertVC, animated: true, completion: nil)
     }
+    
+    public func alertQuestion(title title: String, question: String, yes: String, no: String, completion: (yes: Bool) -> ()) {
+        
+        let alertVC = UIAlertController(title: title, message: question, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let noAction = UIAlertAction(title: no, style: .Default) { (action) -> Void in
+            completion(yes: false)
+        }
+        alertVC.addAction(noAction)
+        
+        let yesAction = UIAlertAction(title: yes, style: .Default) { (action) -> Void in
+            completion(yes: true)
+        }
+        alertVC.addAction(yesAction)
+        
+        self.presentViewController(alertVC, animated: true, completion: nil)
+    }
+
 }
 
 
