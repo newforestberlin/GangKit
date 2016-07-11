@@ -41,7 +41,12 @@ public extension String {
     public var objcLength: Int {
         return self.utf16.count
     }
-    
+
+	public var urlEncoded: String {
+
+		return self.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) ?? ""
+	}
+
     //MARK: - Linguistics
     
     /**
