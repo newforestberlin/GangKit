@@ -187,4 +187,12 @@ public class Progress {
         }
     }
     
+    public class func removeProgressInView(view: UIView) {
+        // Do this immediate without animation
+        if let existingProgress = getProgressFromView(view) as? AnimatedProgressView {
+            existingProgress.stopAnimation()
+            existingProgress.removeFromSuperview()
+        }
+    }
+
 }
