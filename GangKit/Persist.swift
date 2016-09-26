@@ -60,20 +60,29 @@ open class Persist {
         Persist.synchronize()
     }
     
-    open class func persist(value: AnyObject?, forKey key: String) {
-        
-        if value == nil {
-            Persist.remove(valueForKey: key)
-        } else {
-            Persist.defaults().setValue(value, forKey: Persist.prefixedKey(forKey: key))
-        }
-        Persist.defaults().synchronize()
+    open class func persist(value: Any?, forKey key: String) {
+		guard let value = value else {
+			Persist.remove(valueForKey: key)
+			Persist.defaults().synchronize()
+			return
+		}
+
+		Persist.defaults().set(value, forKey: Persist.prefixedKey(forKey: key))
+		Persist.defaults().synchronize()
+//
+//        if value == nil {
+//            Persist.remove(valueForKey: key)
+//        } else {
+//			Persist.defaults().set(value, forKey: Persist.prefixedKey(forKey: key))
+////            Persist.defaults().setValue(value, forKey: Persist.prefixedKey(forKey: key))
+//        }
+//        Persist.defaults().synchronize()
     }
     
-    open class func retrieve(valueforKey key: String) ->AnyObject? {
+    open class func retrieve(valueforKey key: String) ->Any? {
     
         if let value = Persist.defaults().value(forKey: Persist.prefixedKey(forKey: key)) {
-            return value as AnyObject?
+            return value as Any?
         }
         return nil
     }
