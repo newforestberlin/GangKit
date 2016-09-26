@@ -26,11 +26,11 @@ import UIKit
 
 public extension UIView {
     
-    public func addConstraintsWithFormat(_ visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : Any], views: [String : UIView]) {
+    public func addConstraintsWithFormat(_ visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : Any], views: [String : Any]) {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: visualFormat, options: options, metrics: metrics, views: views))
     }
     
-    public func addConstraintsWithFormats(_ visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : Any], views: [String : UIView]) {
+    public func addConstraintsWithFormats(_ visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : Any], views: [String : Any]) {
         for format in visualFormats {
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views))
         }
@@ -40,11 +40,11 @@ public extension UIView {
         self.addConstraint(NSLayoutConstraint(item: withItem, attribute: withAttribute, relatedBy: withRelation, toItem: toItem, attribute: toAttribute, multiplier: multiplier, constant: constant))
     }
     
-    public func addConstraintsWithFormats(_ visualFormats: [String], views: [String : UIView]) {
-        self.addConstraintsWithFormats(visualFormats, options: NSLayoutFormatOptions(), metrics: [String : AnyObject](), views: views)
+    public func addConstraintsWithFormats(_ visualFormats: [String], views: [String : Any]) {
+        self.addConstraintsWithFormats(visualFormats, options: NSLayoutFormatOptions(), metrics: nil, views: views)
     }
     
-    public func addConstraintsWithFormat(_ visualFormat: String, views: [String : UIView]) {
+    public func addConstraintsWithFormat(_ visualFormat: String, views: [String : Any]) {
         self.addConstraintsWithFormats([visualFormat], views: views)
     }
     
