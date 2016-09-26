@@ -26,11 +26,11 @@ import UIKit
 
 public extension UIView {
     
-    public func addConstraintsWithFormat(_ visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
+    public func addConstraintsWithFormat(_ visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : Any], views: [String : UIView]) {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: visualFormat, options: options, metrics: metrics, views: views))
     }
     
-    public func addConstraintsWithFormats(_ visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
+    public func addConstraintsWithFormats(_ visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : Any], views: [String : UIView]) {
         for format in visualFormats {
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views))
         }
