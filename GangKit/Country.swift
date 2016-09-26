@@ -17,9 +17,9 @@ public struct Country {
         
         var result = [Country]()
         
-        for code in NSLocale.ISOCountryCodes() as [String] {
-            let id = NSLocale.localeIdentifierFromComponents([NSLocaleCountryCode: code])
-            let name = NSLocale.currentLocale().displayNameForKey(NSLocaleIdentifier, value: id) ?? "Country not found for code: \(code)"
+        for code in Locale.isoRegionCodes as [String] {
+            let id = Locale.identifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+            let name = (Locale.current as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
             result.append(Country(localizedDisplayName: name, isoCode: code))
         }
         
@@ -27,7 +27,7 @@ public struct Country {
     }
     
     public static func country(withISOCode isoCode: String) -> Country? {
-        return Country.allCountries().filter { $0.isoCode.lowercaseString == isoCode.lowercaseString }.first
+        return Country.allCountries().filter { $0.isoCode.lowercased() == isoCode.lowercased() }.first
     }
 
 }

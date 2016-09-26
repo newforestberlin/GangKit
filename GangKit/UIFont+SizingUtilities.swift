@@ -26,12 +26,12 @@ import UIKit
 
 public extension UIFont {
 
-    public func sizeOfString (string: String, constrainedToWidth width: CGFloat) -> CGSize {
+    public func sizeOfString (_ string: String, constrainedToWidth width: CGFloat) -> CGSize {
         
-        let options: NSStringDrawingOptions = [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading]
+        let options: NSStringDrawingOptions = [NSStringDrawingOptions.usesLineFragmentOrigin, NSStringDrawingOptions.usesFontLeading]
         let attributes = [NSFontAttributeName: self]
-        let maxSize = CGSize(width: width, height: CGFloat.max)
-        return NSString(string: string).boundingRectWithSize(maxSize,
+        let maxSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        return NSString(string: string).boundingRect(with: maxSize,
             options: options,
             attributes: attributes,
             context: nil).size
@@ -40,10 +40,10 @@ public extension UIFont {
 
 public extension String {
     
-    public func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: CGFloat.max)
+    public func heightWithConstrainedWidth(_ width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         
-        let boundingBox = self.boundingRectWithSize(constraintRect, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
         
         return boundingBox.height
     }

@@ -26,25 +26,25 @@ import UIKit
 
 public extension UIView {
     
-    public func addConstraintsWithFormat(visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(visualFormat, options: options, metrics: metrics, views: views))
+    public func addConstraintsWithFormat(_ visualFormat: String, options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: visualFormat, options: options, metrics: metrics, views: views))
     }
     
-    public func addConstraintsWithFormats(visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
+    public func addConstraintsWithFormats(_ visualFormats: [String], options: NSLayoutFormatOptions, metrics: [String : AnyObject], views: [String : UIView]) {
         for format in visualFormats {
-            self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(format, options: options, metrics: metrics, views: views))
+            self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: options, metrics: metrics, views: views))
         }
     }
     
-    public func addConstraintWithItem(withItem: UIView, withAttribute: NSLayoutAttribute, withRelation: NSLayoutRelation, toItem: UIView?, toAttribute: NSLayoutAttribute, multiplier: CGFloat, constant: CGFloat) {
+    public func addConstraintWithItem(_ withItem: UIView, withAttribute: NSLayoutAttribute, withRelation: NSLayoutRelation, toItem: UIView?, toAttribute: NSLayoutAttribute, multiplier: CGFloat, constant: CGFloat) {
         self.addConstraint(NSLayoutConstraint(item: withItem, attribute: withAttribute, relatedBy: withRelation, toItem: toItem, attribute: toAttribute, multiplier: multiplier, constant: constant))
     }
     
-    public func addConstraintsWithFormats(visualFormats: [String], views: [String : UIView]) {
+    public func addConstraintsWithFormats(_ visualFormats: [String], views: [String : UIView]) {
         self.addConstraintsWithFormats(visualFormats, options: NSLayoutFormatOptions(), metrics: [String : AnyObject](), views: views)
     }
     
-    public func addConstraintsWithFormat(visualFormat: String, views: [String : UIView]) {
+    public func addConstraintsWithFormat(_ visualFormat: String, views: [String : UIView]) {
         self.addConstraintsWithFormats([visualFormat], views: views)
     }
     

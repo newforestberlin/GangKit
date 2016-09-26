@@ -26,12 +26,12 @@ import UIKit
 
 private let Progress_magicTag: Int = 3141598
 
-public class AnimatedProgressView: UIView {
+open class AnimatedProgressView: UIView {
     
-    public func startAnimation() {
+    open func startAnimation() {
     }
     
-    public func stopAnimation() {
+    open func stopAnimation() {
     }
     
 }
@@ -40,25 +40,25 @@ public protocol AnimatedProgressViewFactory {
     func createAnimatedProgressView(withFrame frame: CGRect) -> AnimatedProgressView?
 }
 
-public class ProgressAnimationView: AnimatedProgressView {
+open class ProgressAnimationView: AnimatedProgressView {
     
-    private let radius: CGFloat = 16.0
+    fileprivate let radius: CGFloat = 16.0
     
-    private let animationStepCount = 100
-    private let animationDuration = 0.8
+    fileprivate let animationStepCount = 100
+    fileprivate let animationDuration = 0.8
     
-    private var circlePositions: [CGPoint] = []
-    private var circleSizes: [CGFloat] = []
+    fileprivate var circlePositions: [CGPoint] = []
+    fileprivate var circleSizes: [CGFloat] = []
     
-    private let circleMinSize: CGFloat = 7
+    fileprivate let circleMinSize: CGFloat = 7
     
-    private let circleMinScale: CGFloat = 0.6
-    private let circleMaxScale: CGFloat = 0.9
+    fileprivate let circleMinScale: CGFloat = 0.6
+    fileprivate let circleMaxScale: CGFloat = 0.9
     
     //var circle = UIView(frame: CGRectZero)
     
-    private let circleCount = 5
-    private var circles: [UIView] = []
+    fileprivate let circleCount = 5
+    fileprivate var circles: [UIView] = []
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,9 +66,9 @@ public class ProgressAnimationView: AnimatedProgressView {
         backgroundColor = UIColor(white: 1.0, alpha: 0.4)
         
         for _ in 0..<circleCount {
-            let circle = UIView(frame: CGRectZero)
-            circle.backgroundColor = UIColor.orangeColor()
-            circle.frame = CGRectMake(0, 0, circleMinSize, circleMinSize)
+            let circle = UIView(frame: CGRect.zero)
+            circle.backgroundColor = UIColor.orange
+            circle.frame = CGRect(x: 0, y: 0, width: circleMinSize, height: circleMinSize)
             circle.layer.cornerRadius = 0.5*circleMinSize
             circle.alpha = 0.5 // + 0.5*CGFloat(k)/CGFloat(circleCount)
             circles.append(circle)
@@ -81,7 +81,7 @@ public class ProgressAnimationView: AnimatedProgressView {
         let sizeDelta = circleMaxScale - circleMinScale
         
         for _ in 0..<animationStepCount {
-            let point = CGPointMake(0.5*frame.size.width+radius*CGFloat(-sin(angle)), 0.5*frame.size.height+radius*CGFloat(cos(angle)))
+            let point = CGPoint(x: 0.5*frame.size.width+radius*CGFloat(-sin(angle)), y: 0.5*frame.size.height+radius*CGFloat(cos(angle)))
             circlePositions.append(point)
             circleSizes.append(circleMinScale + 0.5*sizeDelta + 0.5*sizeDelta*CGFloat(sin(-0.5*3.14159+angle)))
             angle += angleStep
@@ -92,20 +92,20 @@ public class ProgressAnimationView: AnimatedProgressView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func startAnimation() {
+    open override func startAnimation() {
         
         for k in 0..<circleCount {
             let circle = self.circles[k]
             circle.center = self.circlePositions[0]
-            circle.transform = CGAffineTransformMakeScale(self.circleSizes[0], self.circleSizes[0])
+            circle.transform = CGAffineTransform(scaleX: self.circleSizes[0], y: self.circleSizes[0])
         }
         
-        UIView.animateKeyframesWithDuration(animationDuration, delay: 0.0, options: UIViewKeyframeAnimationOptions(rawValue: UIViewKeyframeAnimationOptions.Repeat.rawValue | UIViewKeyframeAnimationOptions.CalculationModeLinear.rawValue), animations: { () -> Void in
+        UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: UIViewKeyframeAnimationOptions(rawValue: UIViewKeyframeAnimationOptions.repeat.rawValue | UIViewKeyframeAnimationOptions().rawValue), animations: { () -> Void in
             
             let keyframeDuration = 1.0 / Double(self.animationStepCount)
             for k in 0..<self.animationStepCount {
                 let startTime = Double(k) * keyframeDuration
-                UIView.addKeyframeWithRelativeStartTime(startTime, relativeDuration: keyframeDuration, animations: { () -> Void in
+                UIView.addKeyframe(withRelativeStartTime: startTime, relativeDuration: keyframeDuration, animations: { () -> Void in
                     
                     for c in 0..<self.circleCount {
                         let circle = self.circles[c]
@@ -114,7 +114,7 @@ public class ProgressAnimationView: AnimatedProgressView {
                             frameIndex = self.animationStepCount - 1
                         }
                         circle.center = self.circlePositions[frameIndex]
-                        circle.transform = CGAffineTransformMakeScale(self.circleSizes[frameIndex], self.circleSizes[frameIndex])
+                        circle.transform = CGAffineTransform(scaleX: self.circleSizes[frameIndex], y: self.circleSizes[frameIndex])
                     }
                     
                     //self.circle.center = self.circlePositions[k]
@@ -126,15 +126,15 @@ public class ProgressAnimationView: AnimatedProgressView {
         }
     }
     
-    public override func stopAnimation() {
+    open override func stopAnimation() {
         layer.removeAllAnimations()
     }
     
 }
 
-public class Progress {
+open class Progress {
     
-    public class func getProgressFromView(view: UIView) -> UIView? {
+    open class func getProgressFromView(_ view: UIView) -> UIView? {
         for subview in view.subviews {
             if subview.tag == Progress_magicTag {
                 return subview
@@ -144,7 +144,7 @@ public class Progress {
         return nil
     }
     
-    public class func showProgressInView(view: UIView, withBackgroundColor bgColor: UIColor = UIColor(white: 1.0, alpha: 0.4), withFactory factory: AnimatedProgressViewFactory? = nil) {
+    open class func showProgressInView(_ view: UIView, withBackgroundColor bgColor: UIColor = UIColor(white: 1.0, alpha: 0.4), withFactory factory: AnimatedProgressViewFactory? = nil) {
         
         if let existingProgress = getProgressFromView(view) {
             
@@ -176,9 +176,9 @@ public class Progress {
         }
     }
 
-    public class func hideProgressInView(view: UIView) {
+    open class func hideProgressInView(_ view: UIView) {
         if let existingProgress = getProgressFromView(view) as? AnimatedProgressView {
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 existingProgress.alpha = 0.0
                 }, completion: { (done) -> Void in
                     existingProgress.stopAnimation()
@@ -187,7 +187,7 @@ public class Progress {
         }
     }
     
-    public class func removeProgressInView(view: UIView) {
+    open class func removeProgressInView(_ view: UIView) {
         // Do this immediate without animation
         if let existingProgress = getProgressFromView(view) as? AnimatedProgressView {
             existingProgress.stopAnimation()

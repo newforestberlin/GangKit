@@ -28,7 +28,7 @@ public extension UIViewController {
     
     public class func load(fromStoryboard name: String, withIdentifier identifier: String) -> UIViewController? {
         let storyboard = UIStoryboard(name: name, bundle: nil)
-        return storyboard.instantiateViewControllerWithIdentifier(identifier)
+        return storyboard.instantiateViewController(withIdentifier: identifier)
     }
     
     public class func loadInitialViewController(fromStoryboard name: String) -> UIViewController? {

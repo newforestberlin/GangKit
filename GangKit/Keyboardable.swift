@@ -30,8 +30,8 @@ public protocol Keyboardable {
     func enableKeyboardable()
     func disableKeyboardable()
     
-    func keyboardWillHide(n: NSNotification)
-    func keyboardWillChangeFrame(n: NSNotification)
+    func keyboardWillHide(_ n: Notification)
+    func keyboardWillChangeFrame(_ n: Notification)
     
 }
 
@@ -39,25 +39,25 @@ public extension Keyboardable where Self: UIViewController {
     
     func enableKeyboardable() {
         
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillChangeFrameNotification, object: nil, queue: nil) { n in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil, queue: nil) { n in
             self.keyboardWillChangeFrame(n)
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification, object: nil, queue: nil) { n in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) { n in
             self.keyboardWillHide(n)
         }
     }
     
     func disableKeyboardable() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: Keyboard notifications
     
-    func keyboardWillHide(n: NSNotification) {
+    func keyboardWillHide(_ n: Notification) {
         self.view.layoutIfNeeded()
         
-        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             self.keyboardableBottomConstraint.constant = 0.0
             self.view.layoutIfNeeded()
@@ -66,23 +66,23 @@ public extension Keyboardable where Self: UIViewController {
         }
     }
     
-    func keyboardWillChangeFrame(n: NSNotification) {
+    func keyboardWillChangeFrame(_ n: Notification) {
         
         var height: CGFloat = 0
-        var duration: NSTimeInterval = 0
-        let option = UIViewAnimationOptions.CurveEaseInOut
+        var duration: TimeInterval = 0
+        let option = UIViewAnimationOptions()
         
-        if let rect = n.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue {
+        if let rect = ((n as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
             height = rect.size.height
         }
         
-        if let interval = n.userInfo?[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue {
+        if let interval = ((n as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue {
             duration = interval
         }
         
         self.view.layoutIfNeeded()
         
-        UIView.animateWithDuration(duration, delay: 0, options: option, animations: { () -> Void in
+        UIView.animate(withDuration: duration, delay: 0, options: option, animations: { () -> Void in
             
             self.keyboardableBottomConstraint.constant = height
             self.view.layoutIfNeeded()

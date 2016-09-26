@@ -8,12 +8,12 @@
 
 import Foundation
 
-public func <(a: NSDate, b: NSDate) -> Bool {
-	return a.compare(b) == NSComparisonResult.OrderedAscending
-}
+//public func <(a: Date, b: Date) -> Bool {
+//	return a.compare(b) == ComparisonResult.orderedAscending
+//}
 
-public func ==(a: NSDate, b: NSDate) -> Bool {
-	return a.compare(b) == NSComparisonResult.OrderedSame
-}
+//public func ==(a: Date, b: Date) -> Bool {
+//	return a.compare(b) == ComparisonResult.orderedSame
+//}
 
-extension NSDate: Comparable { }
+extension Date { }

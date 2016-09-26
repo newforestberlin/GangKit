@@ -26,6 +26,6 @@ import UIKit
 
 public protocol ModalDismissable {
     
-    func dismiss(viewController viewController: UIViewController, animated: Bool)
+    func dismiss(viewController: UIViewController, animated: Bool)
     
 }

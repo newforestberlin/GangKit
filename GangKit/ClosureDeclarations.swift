@@ -24,6 +24,6 @@
 
 import Foundation
 
-public typealias CompletionClosure = ((completed: Bool) -> ())
-public typealias ProgressClosure = ((progress: Int, total: Int) -> ())
+public typealias CompletionClosure = ((_ completed: Bool) -> ())
+public typealias ProgressClosure = ((_ progress: Int, _ total: Int) -> ())
 public typealias VoidClosure = () -> ()

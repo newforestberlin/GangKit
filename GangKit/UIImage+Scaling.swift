@@ -26,21 +26,21 @@ import UIKit
 
 public extension UIImage {
     
-    public func scale(maxWidth maxWidth: CGFloat) -> UIImage {
+    public func scale(maxWidth: CGFloat) -> UIImage {
         
         let scalingFactor = maxWidth / self.size.width
         
-        let size = CGSizeApplyAffineTransform(self.size, CGAffineTransformMakeScale(scalingFactor, scalingFactor))
+        let size = self.size.applying(CGAffineTransform(scaleX: scalingFactor, y: scalingFactor))
         let hasAlpha = false
         let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
         
         UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
-        self.drawInRect(CGRect(origin: CGPointZero, size: size))
+        self.draw(in: CGRect(origin: CGPoint.zero, size: size))
         
         let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return scaledImage
+        return scaledImage!
     }
 }
 

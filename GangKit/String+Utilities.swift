@@ -42,10 +42,11 @@ public extension String {
         return self.utf16.count
     }
 
-	public var urlEncoded: String {
-
-		return self.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) ?? ""
-	}
+	// DEprecated
+//	public var urlEncoded: String {
+//
+//		return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed()) ?? ""
+//	}
 
     //MARK: - Linguistics
     
@@ -60,7 +61,7 @@ public extension String {
         if self.length > 4 {
             let tagger = NSLinguisticTagger(tagSchemes:[NSLinguisticTagSchemeLanguage], options: 0)
             tagger.string = self
-            return tagger.tagAtIndex(0, scheme: NSLinguisticTagSchemeLanguage, tokenRange: nil, sentenceRange: nil)
+            return tagger.tag(at: 0, scheme: NSLinguisticTagSchemeLanguage, tokenRange: nil, sentenceRange: nil)
         }
         return nil
     }
@@ -74,7 +75,7 @@ public extension String {
         if self.length > 1 {
             let tagger = NSLinguisticTagger(tagSchemes:[NSLinguisticTagSchemeScript], options: 0)
             tagger.string = self
-            return tagger.tagAtIndex(0, scheme: NSLinguisticTagSchemeScript, tokenRange: nil, sentenceRange: nil)
+            return tagger.tag(at: 0, scheme: NSLinguisticTagSchemeScript, tokenRange: nil, sentenceRange: nil)
         }
         return nil
     }
@@ -101,7 +102,7 @@ public extension String {
     - returns: Bool
     */
     public func isOnlyEmptySpacesAndNewLineCharacters() -> Bool {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).length == 0
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).length == 0
     }
     
     /**
@@ -110,10 +111,10 @@ public extension String {
      - returns: Bool
      */
     public var isEmail: Bool {
-        let dataDetector = try? NSDataDetector(types: NSTextCheckingType.Link.rawValue)
-        let firstMatch = dataDetector?.firstMatchInString(self, options: NSMatchingOptions.ReportCompletion, range: NSMakeRange(0, length))
+        let dataDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let firstMatch = dataDetector?.firstMatch(in: self, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSMakeRange(0, length))
         
-        return (firstMatch?.range.location != NSNotFound && firstMatch?.URL?.scheme == "mailto")
+        return (firstMatch?.range.location != NSNotFound && firstMatch?.url?.scheme == "mailto")
     }
     
     /**
@@ -140,14 +141,14 @@ public extension String {
      - returns: [String]
      */
     public func getLinks() -> [String] {
-        let detector = try? NSDataDetector(types: NSTextCheckingType.Link.rawValue)
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         
-        let links = detector?.matchesInString(self, options: NSMatchingOptions.ReportCompletion, range: NSMakeRange(0, length)).map {$0 }
+        let links = detector?.matches(in: self, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSMakeRange(0, length)).map {$0 }
         
         return links!.filter { link in
-            return link.URL != nil
+            return link.url != nil
             }.map { link -> String in
-                return link.URL!.absoluteString
+                return link.url!.absoluteString
         }
     }
     
@@ -156,15 +157,15 @@ public extension String {
      
      - returns: [NSURL]
      */
-    public func getURLs() -> [NSURL] {
-        let detector = try? NSDataDetector(types: NSTextCheckingType.Link.rawValue)
+    public func getURLs() -> [URL] {
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         
-        let links = detector?.matchesInString(self, options: NSMatchingOptions.ReportCompletion, range: NSMakeRange(0, length)).map {$0 }
+        let links = detector?.matches(in: self, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSMakeRange(0, length)).map {$0 }
         
         return links!.filter { link in
-            return link.URL != nil
-            }.map { link -> NSURL in
-                return link.URL!
+            return link.url != nil
+            }.map { link -> URL in
+                return link.url!
         }
     }
     
@@ -174,20 +175,20 @@ public extension String {
      
      - returns: [NSDate]
      */
-    public func getDates() -> [NSDate] {
-        let error: NSErrorPointer = nil
+    public func getDates() -> [Date] {
+        let error: NSErrorPointer? = nil
         let detector: NSDataDetector?
         do {
-            detector = try NSDataDetector(types: NSTextCheckingType.Date.rawValue)
+            detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.date.rawValue)
         } catch let error1 as NSError {
-            error.memory = error1
+            error??.pointee = error1
             detector = nil
         }
-        let dates = detector?.matchesInString(self, options: NSMatchingOptions.WithTransparentBounds, range: NSMakeRange(0, self.utf16.count)) .map {$0 }
+        let dates = detector?.matches(in: self, options: NSRegularExpression.MatchingOptions.withTransparentBounds, range: NSMakeRange(0, self.utf16.count)) .map {$0 }
         
         return dates!.filter { date in
             return date.date != nil
-            }.map { link -> NSDate in
+            }.map { link -> Date in
                 return link.date!
         }
     }
@@ -198,11 +199,11 @@ public extension String {
      - returns: [String]
      */
     public func getHashtags() -> [String]? {
-        let hashtagDetector = try? NSRegularExpression(pattern: "#(\\w+)", options: NSRegularExpressionOptions.CaseInsensitive)
-        let results = hashtagDetector?.matchesInString(self, options: NSMatchingOptions.WithoutAnchoringBounds, range: NSMakeRange(0, self.utf16.count)).map { $0 }
+        let hashtagDetector = try? NSRegularExpression(pattern: "#(\\w+)", options: NSRegularExpression.Options.caseInsensitive)
+        let results = hashtagDetector?.matches(in: self, options: NSRegularExpression.MatchingOptions.withoutAnchoringBounds, range: NSMakeRange(0, self.utf16.count)).map { $0 }
         
         return results?.map({
-            (self as NSString).substringWithRange($0.rangeAtIndex(0))
+            (self as NSString).substring(with: $0.rangeAt(0))
         })
     }
     
@@ -223,11 +224,11 @@ public extension String {
      - returns: [String]
      */
     public func getMentions() -> [String]? {
-        let hashtagDetector = try? NSRegularExpression(pattern: "@(\\w+)", options: NSRegularExpressionOptions.CaseInsensitive)
-        let results = hashtagDetector?.matchesInString(self, options: NSMatchingOptions.WithoutAnchoringBounds, range: NSMakeRange(0, self.utf16.count)).map { $0 }
+        let hashtagDetector = try? NSRegularExpression(pattern: "@(\\w+)", options: NSRegularExpression.Options.caseInsensitive)
+        let results = hashtagDetector?.matches(in: self, options: NSRegularExpression.MatchingOptions.withoutAnchoringBounds, range: NSMakeRange(0, self.utf16.count)).map { $0 }
         
         return results?.map({
-            (self as NSString).substringWithRange($0.rangeAtIndex(1))
+            (self as NSString).substring(with: $0.rangeAt(1))
         })
     }
     
@@ -263,16 +264,16 @@ public extension String {
      - returns: Base64 encoded string
      */
     public func encodeToBase64Encoding() -> String {
-        let utf8str = self.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-        return utf8str.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        let utf8str = self.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+        return utf8str.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
     }
     
     /**
      - returns: Decoded Base64 string
      */
     public func decodeFromBase64Encoding() -> String {
-        let base64data = NSData(base64EncodedString: self, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-        return NSString(data: base64data!, encoding: NSUTF8StringEncoding)! as String
+        let base64data = Data(base64Encoded: self, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
+        return NSString(data: base64data!, encoding: String.Encoding.utf8.rawValue)! as String
     }
     
     
@@ -284,10 +285,10 @@ public extension String {
     }
     
     public subscript (r: Range<Int>) -> String {
-        let start = startIndex.advancedBy(r.startIndex)
-        let end = startIndex.advancedBy(r.endIndex)
+        let start = characters.index(startIndex, offsetBy: r.lowerBound)
+        let end = characters.index(startIndex, offsetBy: r.upperBound)
         
-        return substringWithRange(start..<end)
+        return substring(with: start..<end)
     }
     
     public subscript (range: NSRange) -> String {
@@ -296,6 +297,6 @@ public extension String {
     }
     
     public subscript (substring: String) -> Range<String.Index>? {
-        return rangeOfString(substring, options: NSStringCompareOptions.LiteralSearch, range: startIndex..<endIndex, locale: NSLocale.currentLocale())
+        return range(of: substring, options: NSString.CompareOptions.literal, range: startIndex..<endIndex, locale: Locale.current)
     }
 }

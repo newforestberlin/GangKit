@@ -24,43 +24,43 @@
 
 import UIKit
 
-public class Persist {
+open class Persist {
     
-    private class func defaults() ->NSUserDefaults {
-        return NSUserDefaults.standardUserDefaults()
+    fileprivate class func defaults() ->UserDefaults {
+        return UserDefaults.standard
     }
     
-    private class func synchronize() {
+    fileprivate class func synchronize() {
         Persist.defaults().synchronize()
     }
     
-    private class func prefix() -> String {
-        if let identifier = NSBundle.mainBundle().bundleIdentifier {
+    fileprivate class func prefix() -> String {
+        if let identifier = Bundle.main.bundleIdentifier {
             return identifier
         }
         return "unique.random.com"
     }
     
-    private class func prefixedKey(forKey key: String) ->String {
+    fileprivate class func prefixedKey(forKey key: String) ->String {
         return "\(Persist.prefix()).\(key))"
     }
     
     //Clears all values with the app prefix
     
-    public class func resetDefaults() {
+    open class func resetDefaults() {
         
         let prefix = Persist.prefix()
         
         for (key, _) in Persist.defaults().dictionaryRepresentation() {
             if key.hasPrefix(prefix) {
-                Persist.defaults().removeObjectForKey(key)
+                Persist.defaults().removeObject(forKey: key)
             }
         }
         
         Persist.synchronize()
     }
     
-    public class func persist(value value: AnyObject?, forKey key: String) {
+    open class func persist(value: AnyObject?, forKey key: String) {
         
         if value == nil {
             Persist.remove(valueForKey: key)
@@ -70,17 +70,17 @@ public class Persist {
         Persist.defaults().synchronize()
     }
     
-    public class func retrieve(valueforKey key: String) ->AnyObject? {
+    open class func retrieve(valueforKey key: String) ->AnyObject? {
     
-        if let value = Persist.defaults().valueForKey(Persist.prefixedKey(forKey: key)) {
-            return value
+        if let value = Persist.defaults().value(forKey: Persist.prefixedKey(forKey: key)) {
+            return value as AnyObject?
         }
         return nil
     }
     
-    public class func remove(valueForKey key: String) {
+    open class func remove(valueForKey key: String) {
         
-        Persist.defaults().removeObjectForKey(Persist.prefixedKey(forKey: key))
+        Persist.defaults().removeObject(forKey: Persist.prefixedKey(forKey: key))
         Persist.synchronize()
     }
 }

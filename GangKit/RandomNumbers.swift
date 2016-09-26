@@ -29,7 +29,7 @@ public extension Int {
     /**
     Returns a random integer between 0 and n-1.
     */
-    public static func random(n: Int) -> Int {
+    public static func random(_ n: Int) -> Int {
         return Int(arc4random_uniform(UInt32(n)))
     }
     /**
@@ -39,7 +39,7 @@ public extension Int {
     :return: random number Int
     By DaRkDOG
     */
-    public static func random(min min: Int, max: Int) -> Int {
+    public static func random(min: Int, max: Int) -> Int {
         return Int(arc4random_uniform(UInt32(max - min + 1))) + min
     }
 }
@@ -59,7 +59,7 @@ public extension Double {
     :return: random number Double
     By DaRkDOG
     */
-    public static func random(min min: Double, max: Double) -> Double {
+    public static func random(min: Double, max: Double) -> Double {
         return Double.random() * (max - min) + min
     }
 }
@@ -78,7 +78,7 @@ public extension Float {
     :return: random number Float
     By DaRkDOG
     */
-    public static func random(min min: Float, max: Float) -> Float {
+    public static func random(min: Float, max: Float) -> Float {
         return Float.random() * (max - min) + min
     }
 }
@@ -97,7 +97,7 @@ public extension CGFloat {
     :return: random number CGFloat
     By DaRkDOG
     */
-    public static func random(min min: CGFloat, max: CGFloat) -> CGFloat {
+    public static func random(min: CGFloat, max: CGFloat) -> CGFloat {
         return CGFloat.random() * (max - min) + min
     }
 }
@@ -116,7 +116,7 @@ public extension CGPoint {
     :return: random number CGFloat
     By DaRkDOG
     */
-    public static func random(min min: CGFloat, max: CGFloat) -> CGPoint {
+    public static func random(min: CGFloat, max: CGFloat) -> CGPoint {
         return CGPoint(x: CGFloat.random(min: min, max: max), y: CGFloat.random(min: min, max: max))
     }
 }

@@ -28,7 +28,7 @@ public extension UINib {
     
     public class func instantiateView<T>(fromNib name: String) -> T? {
         
-        if let view = UINib(nibName: name, bundle: nil).instantiateWithOwner(nil, options: nil).first as? T {
+        if let view = UINib(nibName: name, bundle: nil).instantiate(withOwner: nil, options: nil).first as? T {
             return view
         }
         
@@ -38,14 +38,14 @@ public extension UINib {
 
 public extension UIView {
     
-    public class func loadViewFromNib<T: UIView>(nibName: String) -> T? {
+    public class func loadViewFromNib<T: UIView>(_ nibName: String) -> T? {
         return UINib.instantiateView(fromNib: nibName) as T?
     }
     
     // Be aware that this removes the constraints from self and copies them to the loaded view!
     // This should be called from awakeAfterUsingCoder, like this:
     // return viewFromNib("TimerStatusView") ?? self
-    public func viewFromNib<T: UIView>(nibName: String) -> T? {
+    public func viewFromNib<T: UIView>(_ nibName: String) -> T? {
         if subviews.count == 0 {
             if let view = UIView.loadViewFromNib(nibName) as? T {
                 view.translatesAutoresizingMaskIntoConstraints = false

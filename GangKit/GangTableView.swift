@@ -49,13 +49,13 @@ import UIKit
 
 public protocol Updatable {
 
-    func update(data data: AnyObject)
+    func update(data: AnyObject)
 }
 
 public protocol TableViewDelegate: class {
     
-    func configure(cell cell: UITableViewCell, tableview: UITableView, indexPath: NSIndexPath, data: AnyObject)
-    func didSelect(tableView tableview: UITableView, indexPath: NSIndexPath, data: AnyObject)
+    func configure(cell: UITableViewCell, tableview: UITableView, indexPath: IndexPath, data: AnyObject)
+    func didSelect(tableView tableview: UITableView, indexPath: IndexPath, data: AnyObject)
 }
 
 public protocol TableViewDataSource: class {
@@ -72,20 +72,20 @@ public protocol TableViewSectionHeaderDelegate: class {
 
 public protocol TableViewScrollDelegate: class {
 
-    func didScroll(scrollView: UIScrollView)
-    func didEndScrolling(scrollView: UIScrollView)
+    func didScroll(_ scrollView: UIScrollView)
+    func didEndScrolling(_ scrollView: UIScrollView)
     
 }
 
-public class GangTableView: UITableView {
+open class GangTableView: UITableView {
 
-    public var sections = [[AnyObject]]()
-    public weak var tableViewDelegate: TableViewDelegate?
-    public weak var tableViewDataSource: TableViewDataSource?
-    public weak var tableViewScrollDelegate: TableViewScrollDelegate?
-    public weak var tableViewSectionHeaderDelegate: TableViewSectionHeaderDelegate?
+    open var sections = [[AnyObject]]()
+    open weak var tableViewDelegate: TableViewDelegate?
+    open weak var tableViewDataSource: TableViewDataSource?
+    open weak var tableViewScrollDelegate: TableViewScrollDelegate?
+    open weak var tableViewSectionHeaderDelegate: TableViewSectionHeaderDelegate?
 
-    private var registeredIdentifiers = Set<String>()
+    fileprivate var registeredIdentifiers = Set<String>()
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -94,52 +94,52 @@ public class GangTableView: UITableView {
         dataSource = self
     }
 
-    func data(atIndexPath indexPath: NSIndexPath) -> AnyObject {
-        return sections[indexPath.section][indexPath.row]
+    func data(atIndexPath indexPath: IndexPath) -> AnyObject {
+        return sections[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
     }
 }
 
 extension GangTableView: UITableViewDelegate {
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let data = sections[indexPath.section][indexPath.row]
+        let data = sections[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         tableViewDelegate?.didSelect(tableView: self, indexPath: indexPath, data: data)
     }
 
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         tableViewScrollDelegate?.didScroll(self)
     }
 
-    public func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         tableViewScrollDelegate?.didEndScrolling(self)
     }
 }
 
 extension GangTableView: UITableViewDataSource {
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         
         return sections.count
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return sections[section].count
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let data = sections[indexPath.section][indexPath.row]
+        let data = sections[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
         
         if let identifier = tableViewDataSource?.cellIdentifier(forData: data) {
             
             if registeredIdentifiers.contains(identifier) == false {
                 
-                if let _ = NSBundle.mainBundle().pathForResource(identifier, ofType: "nib") {
+                if let _ = Bundle.main.path(forResource: identifier, ofType: "nib") {
                     
                     let nib = UINib(nibName: identifier, bundle: nil)
-                    registerNib(nib, forCellReuseIdentifier: identifier)
+                    register(nib, forCellReuseIdentifier: identifier)
                     registeredIdentifiers.insert(identifier)
 
                 } else {
@@ -148,7 +148,7 @@ extension GangTableView: UITableViewDataSource {
                 }
             }
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             
             if let cell = cell as? Updatable {
                 cell.update(data: data)
@@ -162,11 +162,11 @@ extension GangTableView: UITableViewDataSource {
         return UITableViewCell()
     }
 
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableViewSectionHeaderDelegate?.sectionView(forSection: section)
     }
 
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return tableViewSectionHeaderDelegate?.height(forSection: section) ?? UITableViewAutomaticDimension
     }
 }

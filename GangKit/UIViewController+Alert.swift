@@ -26,61 +26,61 @@ import UIKit
 
 public extension UIViewController {
     
-    public func alert(title title: String, message: String, completion: () -> ()) {
+    public func alert(title: String, message: String, completion: @escaping () -> ()) {
         
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
             completion()
         }
         
         alertVC.addAction(okAction)
         
-        self.presentViewController(alertVC, animated: true, completion: nil)
+        self.present(alertVC, animated: true, completion: nil)
     }
 
-    public func alert(title title: String, message: String) {
+    public func alert(title: String, message: String) {
         
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
         }
         
         alertVC.addAction(okAction)
         
-        self.presentViewController(alertVC, animated: true, completion: nil)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
-    public func alertQuestion(title title: String, question: String, completion: (yes: Bool) -> ()) {
+    public func alertQuestion(title: String, question: String, completion: @escaping (_ yes: Bool) -> ()) {
         
-        let alertVC = UIAlertController(title: title, message: question, preferredStyle: UIAlertControllerStyle.Alert)
+        let alertVC = UIAlertController(title: title, message: question, preferredStyle: UIAlertControllerStyle.alert)
         
-        let noAction = UIAlertAction(title: "No", style: .Default) { (action) -> Void in
-            completion(yes: false)
+        let noAction = UIAlertAction(title: "No", style: .default) { (action) -> Void in
+            completion(false)
         }
         alertVC.addAction(noAction)
 
-        let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) -> Void in
-            completion(yes: true)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) -> Void in
+            completion(true)
         }
         alertVC.addAction(yesAction)
 
-        self.presentViewController(alertVC, animated: true, completion: nil)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
-    public func alertQuestion(title title: String, question: String, yes: String, no: String, completion: (yes: Bool) -> ()) {
+    public func alertQuestion(title: String, question: String, yes: String, no: String, completion: @escaping (_ yes: Bool) -> ()) {
         
-        let alertVC = UIAlertController(title: title, message: question, preferredStyle: UIAlertControllerStyle.Alert)
+        let alertVC = UIAlertController(title: title, message: question, preferredStyle: UIAlertControllerStyle.alert)
         
-        let noAction = UIAlertAction(title: no, style: .Default) { (action) -> Void in
-            completion(yes: false)
+        let noAction = UIAlertAction(title: no, style: .default) { (action) -> Void in
+            completion(false)
         }
         alertVC.addAction(noAction)
         
-        let yesAction = UIAlertAction(title: yes, style: .Default) { (action) -> Void in
-            completion(yes: true)
+        let yesAction = UIAlertAction(title: yes, style: .default) { (action) -> Void in
+            completion(true)
         }
         alertVC.addAction(yesAction)
         
-        self.presentViewController(alertVC, animated: true, completion: nil)
+        self.present(alertVC, animated: true, completion: nil)
     }
 
 }

@@ -8,50 +8,50 @@
 
 import Foundation
 
-public extension NSDateFormatter {
+public extension DateFormatter {
     
-    @nonobjc static let EEEEFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "EEEE")
-    @nonobjc static let EEEFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "EEE")
-    @nonobjc static let HHmmFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "HH:mm")
-    @nonobjc static let MMMddFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "MMM dd")
-    @nonobjc static let EEEEMMMddAtHHmmFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "EEEE MMM dd 'at' HH:mm")
-    @nonobjc static let EEEMMMddFormatter = NSDateFormatter.create(NSLocale.currentLocale(), format: "EEE, MMM dd")
+    @nonobjc static let EEEEFormatter = DateFormatter.create(Locale.current, format: "EEEE")
+    @nonobjc static let EEEFormatter = DateFormatter.create(Locale.current, format: "EEE")
+    @nonobjc static let HHmmFormatter = DateFormatter.create(Locale.current, format: "HH:mm")
+    @nonobjc static let MMMddFormatter = DateFormatter.create(Locale.current, format: "MMM dd")
+    @nonobjc static let EEEEMMMddAtHHmmFormatter = DateFormatter.create(Locale.current, format: "EEEE MMM dd 'at' HH:mm")
+    @nonobjc static let EEEMMMddFormatter = DateFormatter.create(Locale.current, format: "EEE, MMM dd")
     
-    public class func create(locale: NSLocale, format: String) -> NSDateFormatter {
+    public class func create(_ locale: Locale, format: String) -> DateFormatter {
         
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale.currentLocale()
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
         formatter.dateFormat = format
         return formatter
     }
     
-    public class func string(format: DateFormat) -> String {
+    public class func string(_ format: DateFormat) -> String {
         return format.string
     }
     
     public enum DateFormat {
         
-        case EEEE(date: NSDate)
-        case EEE(date: NSDate)
-        case HHmm(date: NSDate)
-        case MMMdd(date: NSDate)
-        case EEEEMMMddAtHHmm(date: NSDate)
-        case EEEMMMdd(date: NSDate)
+        case eeee(date: Date)
+        case eee(date: Date)
+        case hHmm(date: Date)
+        case mmMdd(date: Date)
+        case eeeemmMddAtHHmm(date: Date)
+        case eeemmMdd(date: Date)
         
         public var string: String {
             switch self {
-            case .EEEE(let date):
-                return EEEEFormatter.stringFromDate(date)
-            case .EEE(let date):
-                return EEEFormatter.stringFromDate(date)
-            case .HHmm(let date):
-                return HHmmFormatter.stringFromDate(date)
-            case .MMMdd(let date):
-                return MMMddFormatter.stringFromDate(date)
-            case .EEEEMMMddAtHHmm(let date):
-                return EEEEMMMddAtHHmmFormatter.stringFromDate(date)
-            case .EEEMMMdd(let date):
-                return EEEMMMddFormatter.stringFromDate(date)
+            case .eeee(let date):
+                return EEEEFormatter.string(from: date)
+            case .eee(let date):
+                return EEEFormatter.string(from: date)
+            case .hHmm(let date):
+                return HHmmFormatter.string(from: date)
+            case .mmMdd(let date):
+                return MMMddFormatter.string(from: date)
+            case .eeeemmMddAtHHmm(let date):
+                return EEEEMMMddAtHHmmFormatter.string(from: date)
+            case .eeemmMdd(let date):
+                return EEEMMMddFormatter.string(from: date)
             }
         }
     }

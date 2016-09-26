@@ -26,16 +26,16 @@ import UIKit
 
 public extension UIView {
     
-    public func setSize(size: CGSize, center: CGPoint) {
-        self.frame = CGRectMake(center.x - size.width * 0.5, center.y - size.height * 0.5, size.width, size.height)
+    public func setSize(_ size: CGSize, center: CGPoint) {
+        self.frame = CGRect(x: center.x - size.width * 0.5, y: center.y - size.height * 0.5, width: size.width, height: size.height)
     }
     
     public func isInsideSuperview() -> Bool {
         if let sv = superview {
-            if center.x > CGRectGetMaxX(sv.frame) || center.x < CGRectGetMinX(sv.frame) {
+            if center.x > sv.frame.maxX || center.x < sv.frame.minX {
                 return false
             }
-            if center.y > CGRectGetMaxY(sv.frame) || center.y < CGRectGetMinY(sv.frame) {
+            if center.y > sv.frame.maxY || center.y < sv.frame.minY {
                 return false
             }
             return true
@@ -48,8 +48,8 @@ public extension UIView {
         let sX = sqrt(t.a * t.a + t.c * t.c)
         let sY = sqrt(t.b * t.b + t.d * t.d)
         if sX != scX || sY != scaleY {
-            transform = CGAffineTransformIdentity
-            transform = CGAffineTransformMakeScale(scX, scaleY)
+            transform = CGAffineTransform.identity
+            transform = CGAffineTransform(scaleX: scX, y: scaleY)
         }
     }
 }

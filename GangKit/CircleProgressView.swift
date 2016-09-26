@@ -24,11 +24,11 @@
 
 import UIKit
 
-public class ProgressView: UIView {
+open class ProgressView: UIView {
     
-    private let circlePathLayer = CAShapeLayer()
+    fileprivate let circlePathLayer = CAShapeLayer()
     
-    public var progress: CGFloat = 0.0 {
+    open var progress: CGFloat = 0.0 {
         
         didSet {
             
@@ -45,9 +45,9 @@ public class ProgressView: UIView {
             swipe.toValue = progress
             swipe.fillMode = kCAFillModeForwards
             swipe.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            swipe.removedOnCompletion = false
+            swipe.isRemovedOnCompletion = false
             circlePathLayer.strokeEnd = progress
-            circlePathLayer.addAnimation(swipe, forKey: "strokeEnd Animation")
+            circlePathLayer.add(swipe, forKey: "strokeEnd Animation")
         }
     }
     
@@ -56,36 +56,36 @@ public class ProgressView: UIView {
         configure()
     }
     
-    private func configure() {
+    fileprivate func configure() {
         
-        opaque = true
+        isOpaque = true
         
         circlePathLayer.frame = bounds
         circlePathLayer.lineWidth = 2
-        circlePathLayer.fillColor = UIColor.clearColor().CGColor
-        circlePathLayer.strokeColor = UIColor.whiteColor().CGColor
+        circlePathLayer.fillColor = UIColor.clear.cgColor
+        circlePathLayer.strokeColor = UIColor.white.cgColor
         
-        circlePathLayer.shadowColor = UIColor.blackColor().CGColor
+        circlePathLayer.shadowColor = UIColor.black.cgColor
         circlePathLayer.shadowOffset = CGSize(width: 1, height: 1)
         circlePathLayer.shadowRadius = 1.0
         circlePathLayer.shadowOpacity = 0.5
         
         layer.addSublayer(circlePathLayer)
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
     }
     
-    public func set(color color: UIColor) {
-        circlePathLayer.strokeColor = color.CGColor
+    open func set(color: UIColor) {
+        circlePathLayer.strokeColor = color.cgColor
     }
     
-    public func circlePath() -> UIBezierPath {
-        return UIBezierPath(ovalInRect: bounds)
+    open func circlePath() -> UIBezierPath {
+        return UIBezierPath(ovalIn: bounds)
     }
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         circlePathLayer.frame = bounds
-        circlePathLayer.path = circlePath().CGPath
+        circlePathLayer.path = circlePath().cgPath
     }
 }

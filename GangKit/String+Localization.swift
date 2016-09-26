@@ -26,7 +26,7 @@ import Foundation
 
 public extension String {
     
-    public func localize(comment comment: String) ->String {
+    public func localize(comment: String) ->String {
         return NSLocalizedString(self, comment: comment)
     }
 }

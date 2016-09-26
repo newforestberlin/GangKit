@@ -25,39 +25,39 @@
 import UIKit
 
 //infix operator += {associativity left precedence 140}
-public func += (inout left: NSMutableAttributedString, right: String) {
+public func += (left: inout NSMutableAttributedString, right: String) {
     
-    left.appendAttributedString(NSAttributedString(string: right))
+    left.append(NSAttributedString(string: right))
 }
 
 public extension NSMutableAttributedString {
     
-    public func setFont(font: UIFont) {
+    public func setFont(_ font: UIFont) {
         self.setFont(font, subString:self.string)
     }
     
-    public func setFont(font: UIFont, subString:String) {
-        let range = (self.string as NSString).rangeOfString(subString)
+    public func setFont(_ font: UIFont, subString:String) {
+        let range = (self.string as NSString).range(of: subString)
         self.addAttribute(NSFontAttributeName, value: font, range: range)
     }
 
-    public func setColor(color: UIColor) {
+    public func setColor(_ color: UIColor) {
         self.setColor(color, subString: self.string)
     }
     
-    public func setColor(color: UIColor, subString:String) {
-        let range = (self.string as NSString).rangeOfString(subString)
+    public func setColor(_ color: UIColor, subString:String) {
+        let range = (self.string as NSString).range(of: subString)
         self.addAttribute(NSForegroundColorAttributeName, value: color, range: range)
     }
     
-    public func setAlignment(alignment:NSTextAlignment) {
+    public func setAlignment(_ alignment:NSTextAlignment) {
         let paraStyle = NSMutableParagraphStyle()
         paraStyle.alignment = alignment
-        let range = (self.string as NSString).rangeOfString(self.string)
+        let range = (self.string as NSString).range(of: self.string)
         self.addAttribute(NSParagraphStyleAttributeName, value: paraStyle, range: range)
     }
 
-    public func setLinespacing(spacing: CGFloat = 0) {
+    public func setLinespacing(_ spacing: CGFloat = 0) {
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = spacing
@@ -67,8 +67,8 @@ public extension NSMutableAttributedString {
     
     public func underline(subString string: String) {
         
-        let range = (self.string as NSString).rangeOfString(string)
-        self.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.StyleSingle.rawValue, range: range)
+        let range = (self.string as NSString).range(of: string)
+        self.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
     }
     
 }
