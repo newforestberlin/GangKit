@@ -43,10 +43,10 @@ public extension String {
     }
 
 	// DEprecated
-//	public var urlEncoded: String {
-//
+	public var urlEncoded: String {
+        return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed) ?? ""
 //		return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed()) ?? ""
-//	}
+	}
 
     //MARK: - Linguistics
     

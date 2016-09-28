@@ -60,7 +60,7 @@ open class Persist {
         Persist.synchronize()
     }
     
-    open class func persist(value: AnyObject?, forKey key: String) {
+    open class func persist(value: Any?, forKey key: String) {
         
         if value == nil {
             Persist.remove(valueForKey: key)
@@ -70,7 +70,7 @@ open class Persist {
         Persist.defaults().synchronize()
     }
     
-    open class func retrieve(valueforKey key: String) ->AnyObject? {
+    open class func retrieve(valueforKey key: String) ->Any? {
     
         if let value = Persist.defaults().value(forKey: Persist.prefixedKey(forKey: key)) {
             return value as AnyObject?
