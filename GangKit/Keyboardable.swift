@@ -38,14 +38,10 @@ public protocol Keyboardable {
 public extension Keyboardable where Self: UIViewController {
     
     func enableKeyboardable() {
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil, queue: nil) { n in
-            self.keyboardWillChangeFrame(n)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardWillHide, object: nil, queue: nil) { n in
-            self.keyboardWillHide(n)
-        }
+
+		NotificationCenter.default.addObserver(forName: Notification.Name.UIKeyboardWillChangeFrame, object: nil, queue: nil, using: keyboardWillChangeFrame)
+		NotificationCenter.default.addObserver(forName: Notification.Name.UIKeyboardWillHide, object: nil, queue: nil, using: keyboardWillHide)
+
     }
     
     func disableKeyboardable() {
@@ -56,7 +52,7 @@ public extension Keyboardable where Self: UIViewController {
     
     func keyboardWillHide(_ n: Notification) {
         self.view.layoutIfNeeded()
-        
+
         UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
             
             self.keyboardableBottomConstraint.constant = 0.0
@@ -65,21 +61,22 @@ public extension Keyboardable where Self: UIViewController {
         }) { (complete) -> Void in
         }
     }
-    
+
     func keyboardWillChangeFrame(_ n: Notification) {
         
         var height: CGFloat = 0
         var duration: TimeInterval = 0
         let option = UIViewAnimationOptions()
-        
-        if let rect = ((n as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue {
-            height = rect.size.height
-        }
-        
-        if let interval = ((n as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue {
-            duration = interval
-        }
-        
+
+		if let rect = (n.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+			height = rect.size.height
+		}
+
+		if let interval = n.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+			duration = interval
+		}
+
+
         self.view.layoutIfNeeded()
         
         UIView.animate(withDuration: duration, delay: 0, options: option, animations: { () -> Void in
