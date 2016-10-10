@@ -49,18 +49,18 @@ import UIKit
 
 public protocol Updatable {
 
-    func update(data: AnyObject)
+    func update(data: Any)
 }
 
 public protocol TableViewDelegate: class {
     
-    func configure(cell: UITableViewCell, tableview: UITableView, indexPath: IndexPath, data: AnyObject)
-    func didSelect(tableView tableview: UITableView, indexPath: IndexPath, data: AnyObject)
+    func configure(cell: UITableViewCell, tableview: UITableView, indexPath: IndexPath, data: Any)
+    func didSelect(tableView tableview: UITableView, indexPath: IndexPath, data: Any)
 }
 
 public protocol TableViewDataSource: class {
     
-    func cellIdentifier(forData data: AnyObject) -> String?
+    func cellIdentifier(forData data: Any) -> String?
 }
 
 public protocol TableViewSectionHeaderDelegate: class {
@@ -79,7 +79,7 @@ public protocol TableViewScrollDelegate: class {
 
 open class GangTableView: UITableView {
 
-    open var sections = [[AnyObject]]()
+    open var sections = [[Any]]()
     open weak var tableViewDelegate: TableViewDelegate?
     open weak var tableViewDataSource: TableViewDataSource?
     open weak var tableViewScrollDelegate: TableViewScrollDelegate?
@@ -94,7 +94,7 @@ open class GangTableView: UITableView {
         dataSource = self
     }
 
-    func data(atIndexPath indexPath: IndexPath) -> AnyObject {
+    func data(atIndexPath indexPath: IndexPath) -> Any {
         return sections[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
     }
 }
